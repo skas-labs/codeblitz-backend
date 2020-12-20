@@ -2,10 +2,15 @@
   "name": "@codeblitz/api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@codeblitz/data": "file:../data",
+    "express": "^4.17.1"
+  }
 }

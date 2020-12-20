@@ -22,7 +22,7 @@ export class Player {
     @JoinTable({
         name: "player_followings",
         joinColumn: {name: "follower"},
-        inverseJoinColumn: {name: "followee"}
+        inverseJoinColumn: {name: "following"}
     })
     followers: Player[]
 
