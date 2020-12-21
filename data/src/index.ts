@@ -1,9 +1,14 @@
 import {User} from "./entities/User";
-import {createConnection} from "typeorm";
+import {createConnection, getCustomRepository} from "typeorm";
 import {Player} from "./entities/Player";
+import {UserRepository} from "./repositories/UserRepository";
 
 export const Entities = {
     User, Player
+}
+
+export const Repositories = {
+    userRepo: getCustomRepository(UserRepository)
 }
 
 export async function connect() {
