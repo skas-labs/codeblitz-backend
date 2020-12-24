@@ -1,5 +1,5 @@
-export {connect} from "@codeblitz/data"
+export { connect } from '@codeblitz/data';
 
-import {Entities} from "@codeblitz/data"
+import { Entities } from '@codeblitz/data';
 
-export const {Player, User} = Entities
+export const { Player, User } = Entities;

@@ -1,31 +1,38 @@
-import {User} from "./entities/User";
-import {createConnection, getCustomRepository} from "typeorm";
-import {Player} from "./entities/Player";
-import {UserRepository} from "./repositories/UserRepository";
+import { createConnection, getCustomRepository } from 'typeorm';
+import { User } from './entities/User';
+import { Player } from './entities/Player';
+import { Question } from './entities/Question';
+import { UserRepository } from './repositories/UserRepository';
+import { QuestionRepository } from './repositories/QuestionRepository';
 
 export const Entities = {
-    User, Player
-}
+  User,
+  Player,
+  Question,
+};
 
 export const Repositories = {
-    userRepo: getCustomRepository(UserRepository)
-}
+  userRepo: getCustomRepository(UserRepository),
+  questionRepo: getCustomRepository(QuestionRepository),
+};
 
 export async function connect() {
-    return await createConnection({
-        type: "postgres",
-        username: "codeblitz",
-        database: "codeblitz",
-        password: "codeblitz",
-        entities: [User, Player],
-        logger: "debug",
-        logging: "all",
-        synchronize: true,
-        dropSchema: true
-    })
+  return await createConnection({
+    type: 'postgres',
+    username: 'codeblitz',
+    database: 'codeblitz',
+    password: 'codeblitz',
+    entities: [User, Player, Question],
+    logger: 'debug',
+    logging: 'all',
+    synchronize: true,
+    dropSchema: true,
+  });
 }
 
 // TODO: --- For testing remove ---
-connect().then((c) => {
-    console.log(c.entityMetadatas)
-}).catch(console.error)
+connect()
+  .then((c) => {
+    console.log(c.entityMetadatas);
+  })
+  .catch(console.error);

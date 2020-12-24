@@ -1,32 +1,39 @@
-import {Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "./User";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './User';
 
-@Entity("players")
+@Entity('players')
 export class Player {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({unique: true})
-    username: String
+  @Column({ unique: true })
+  username: String;
 
-    @Column()
-    name: String
+  @Column()
+  name: String;
 
-    @OneToOne(type => User, user => user.player, {nullable: true})
-    @JoinColumn()
-    user?: User
+  @OneToOne((type) => User, (user) => user.player, { nullable: true })
+  @JoinColumn()
+  user?: User;
 
-    //TODO: add bot
+  //TODO: add bot
 
-    @ManyToMany(() => Player, player => player.following)
-    @JoinTable({
-        name: "player_followings",
-        joinColumn: {name: "follower"},
-        inverseJoinColumn: {name: "following"}
-    })
-    followers: Player[]
+  @ManyToMany(() => Player, (player) => player.following)
+  @JoinTable({
+    name: 'player_followings',
+    joinColumn: { name: 'follower' },
+    inverseJoinColumn: { name: 'following' },
+  })
+  followers: Player[];
 
-    @ManyToMany(() => Player, player => player.followers)
-    following: Player[]
-
+  @ManyToMany(() => Player, (player) => player.followers)
+  following: Player[];
 }
