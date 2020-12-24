@@ -1,6 +1,7 @@
-import { Repositories } from '@codeblitz/data';
+import {connect, Repositories} from '@codeblitz/data';
 import GamePlayer from '~/game/GamePlayer';
 import GameSession from '~/game/GameSession';
+import {QuestionRepository} from "@codeblitz/data/dist/repositories/QuestionRepository";
 
 export default class MatchMaker {
   private waitingQueue: Array<GamePlayer>;
@@ -24,7 +25,8 @@ export default class MatchMaker {
   async startSession(player1: GamePlayer, player2: GamePlayer): Promise<GameSession> {
     const session = new GameSession(player1, player2);
 
-    const questions = await Repositories.questionRepo.find();
+    // FIXME: double await
+    const questions = await (await connect()).getCustomRepository(QuestionRepository).find();
     session.start(questions);
 
     return session;
