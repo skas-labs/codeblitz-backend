@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
 
-export const emitToAll = (sockets: Socket[], eventName: string, ...args: any[]) => {
+export function emitToAll(sockets: Socket[], eventName: string, ...args: unknown[]): void {
   sockets.forEach((socket) => {
     socket.emit(eventName, ...args);
   });
-};
+}

@@ -1,6 +1,6 @@
 import 'module-alias/register';
 import app from '~/app';
-import { createSocketIoServer } from '~/socket';
+// import { createSocketIoServer } from '~/socket';
 import { createServer as createHttpServer } from 'http';
 
 (async () => {

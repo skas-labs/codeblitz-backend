@@ -43,7 +43,7 @@ export default class GameSession {
     this.player2 = player2;
   }
 
-  async initializePlayerActionHandlers(player: GamePlayer, otherPlayer: GamePlayer) {
+  async initializePlayerActionHandlers(player: GamePlayer, otherPlayer: GamePlayer): Promise<void> {
     player.socket.on('select_answer', (msg) => {
       otherPlayer.socket.emit('opponent_selected_answer', {
         questionId: msg.questionId,
@@ -56,7 +56,7 @@ export default class GameSession {
     player.socket.emit('init', this.state);
   }
 
-  async questionLoop(player1: GamePlayer, player2: GamePlayer) {
+  async questionLoop(player1: GamePlayer, player2: GamePlayer): Promise<void> {
     emitToAll([player1.socket, player2.socket], 'round_start', {
       questionId: this.currentQuestionId,
       timer: QUESTION_TIMER,
@@ -93,7 +93,7 @@ export default class GameSession {
     }, QUESTION_TIMER);
   }
 
-  async start(questions: Array<Question>) {
+  async start(questions: Array<Question>): Promise<void> {
     this.state = {
       totalQuestions: questions.length,
       questionIds: questions.map((_) => _.id),
