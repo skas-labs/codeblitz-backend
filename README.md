@@ -4,6 +4,15 @@
 
 ### Monorepo Practices
 
+#### Workflow
+
+##### Install
+Running `npm install` on the root will recursively install all dependencies
+for the inner projects too
+
+##### Build
+Run `npm run build` on the root to recursively build all projects internally
+
 #### Dependencies
 1. Common dependencies (used by more than one module) should go to the root `package.json`
 
@@ -17,7 +26,7 @@
 4. GameSession
     - player1: {} (FK)
     - player2: {} (FK)
-    - qSet: [ q1, q2, q3]
+    - qSet: \[ q1, q2, q3 \]
     - score: { p1: 3, p2: 7}
     - results: { q1: { p1: true, p2: false}, q2: {}  }
 5. Question

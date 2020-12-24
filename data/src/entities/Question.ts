@@ -1,16 +1,58 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {IsUrl, MaxLength} from "class-validator";
 
 @Entity('questions')
 export class Question {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column('varchar', { length: 200 })
+  @Column('text')
   text: string;
 
-  @Column()
-  image: string;
+  @Column({nullable: true})
+  @IsUrl()
+  image?: string;
 
-  @Column()
+  @Column({length: 200})
+  @MaxLength(200)
   title: string;
+
+  @Column('json')
+  options: Question.Options
+
+  @Column('json')
+  answers: Question.Answers
+
+}
+
+export namespace Question {
+  export class Option {
+    title: string
+    @IsUrl() image?: string
+
+    constructor(title: string, image?: string) {
+      this.title = title;
+      this.image = image;
+    }
+  }
+
+  export class Options {
+    a: Option
+    b: Option
+    c: Option
+    d: Option
+  }
+
+  type OptionKey = 'a' | 'b' | 'c' | 'd'
+
+  export class Answers {
+    a: boolean = false
+    b: boolean = false
+    c: boolean = false
+    d: boolean = false
+
+    constructor(...keys: OptionKey[]) {
+      keys.forEach(value => this[value] = true)
+    }
+  }
 }

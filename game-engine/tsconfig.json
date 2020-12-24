@@ -7,7 +7,6 @@
     "outDir": "./dist",
     "rootDir": "./src",      
     "baseUrl": "./src",
-    "declarationDir": "./types",
     "paths": {
       "~/*": ["*"]
     }

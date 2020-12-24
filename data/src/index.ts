@@ -1,9 +1,9 @@
-import { Connection, createConnection, getCustomRepository } from 'typeorm';
-import { User } from './entities/User';
-import { Player } from './entities/Player';
-import { Question } from './entities/Question';
-import { UserRepository } from './repositories/UserRepository';
-import { QuestionRepository } from './repositories/QuestionRepository';
+import {Connection, createConnection} from 'typeorm';
+import {User} from './entities/User';
+import {Player} from './entities/Player';
+import {Question} from './entities/Question';
+import {UserRepository} from './repositories/UserRepository';
+import {QuestionRepository} from './repositories/QuestionRepository';
 
 export const Entities = {
   User,
@@ -12,8 +12,8 @@ export const Entities = {
 };
 
 export const Repositories = {
-  userRepo: getCustomRepository(UserRepository),
-  questionRepo: getCustomRepository(QuestionRepository),
+  UserRepository,
+  QuestionRepository
 };
 
 export async function connect(): Promise<Connection> {
@@ -23,7 +23,7 @@ export async function connect(): Promise<Connection> {
     database: 'codeblitz',
     password: 'codeblitz',
     entities: [User, Player, Question],
-    logger: 'debug',
+    logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
     dropSchema: true,
@@ -32,7 +32,19 @@ export async function connect(): Promise<Connection> {
 
 // TODO: --- For testing remove ---
 connect()
-  .then((c) => {
-    console.log(c.entityMetadatas);
+  .then(async (c) => {
+    const repo = c.getCustomRepository(QuestionRepository)
+    await repo.insert({
+      title: 'Another question',
+      text: 'Very interesting',
+      options: {
+        a: new Question.Option('A'),
+        b: new Question.Option('B'),
+        c: new Question.Option('C'),
+        d: new Question.Option('D')
+      },
+      answers: new Question.Answers('a', 'b')
+    })
+
   })
   .catch(console.error);
