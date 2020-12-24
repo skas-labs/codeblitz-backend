@@ -14,11 +14,11 @@ export interface GameResult {
   playerAnswerMap: {
     [playerId: number]: {
       questionAnswerMap: {
-        [questionId: number]: number
-      },
-      score: number
-    }
-  }
+        [questionId: number]: number;
+      };
+      score: number;
+    };
+  };
 }
 
 export default class GameSession {
@@ -32,10 +32,10 @@ export default class GameSession {
     const questionIds = this.state.questionIds;
 
     if (questionIds.length < this.currentQuestionIndex) {
-      return questionIds[this.currentQuestionIndex]
+      return questionIds[this.currentQuestionIndex];
     }
 
-    return null
+    return null;
   }
 
   constructor(player1: GamePlayer, player2: GamePlayer) {
@@ -46,11 +46,12 @@ export default class GameSession {
   async initializePlayerActionHandlers(player: GamePlayer, otherPlayer: GamePlayer) {
     player.socket.on('select_answer', (msg) => {
       otherPlayer.socket.emit('opponent_selected_answer', {
-        questionId: msg.questionId
-      })
+        questionId: msg.questionId,
+      });
 
-      this.result.playerAnswerMap[player.player.id].questionAnswerMap[msg.questionId] = msg.answerId;
-    })
+      this.result.playerAnswerMap[player.player.id].questionAnswerMap[msg.questionId] =
+        msg.answerId;
+    });
 
     player.socket.emit('init', this.state);
   }
@@ -58,30 +59,38 @@ export default class GameSession {
   async questionLoop(player1: GamePlayer, player2: GamePlayer) {
     emitToAll([player1.socket, player2.socket], 'round_start', {
       questionId: this.currentQuestionId,
-      timer: QUESTION_TIMER
-    })
+      timer: QUESTION_TIMER,
+    });
 
     setTimeout(() => {
-      const player1AnswerId = this.currentQuestionId && this.result.playerAnswerMap[this.player1.player.id].questionAnswerMap[this.currentQuestionId]
-      const player2AnswerId = this.currentQuestionId && this.result.playerAnswerMap[this.player2.player.id].questionAnswerMap[this.currentQuestionId]
+      const player1AnswerId =
+        this.currentQuestionId &&
+        this.result.playerAnswerMap[this.player1.player.id].questionAnswerMap[
+          this.currentQuestionId
+        ];
+      const player2AnswerId =
+        this.currentQuestionId &&
+        this.result.playerAnswerMap[this.player2.player.id].questionAnswerMap[
+          this.currentQuestionId
+        ];
 
       emitToAll([player1.socket, player2.socket], 'question_result', {
-        status: "anwered",
+        status: 'anwered',
         questionId: this.currentQuestionId,
         correctAnswerId: 1,
         players: [
           { id: this.player1.player.id, selectedChoiceId: player1AnswerId },
           { id: this.player2.player.id, selectedChoiceId: player2AnswerId },
-        ]
-      })
+        ],
+      });
 
       this.currentQuestionIndex += 1;
       if (this.currentQuestionId) {
-        this.questionLoop(player1, player2)
+        this.questionLoop(player1, player2);
       } else {
-        emitToAll([player1.socket, player2.socket], 'match_ended')
+        emitToAll([player1.socket, player2.socket], 'match_ended');
       }
-    }, QUESTION_TIMER)
+    }, QUESTION_TIMER);
   }
 
   async start(questions: Array<Question>) {
@@ -94,15 +103,15 @@ export default class GameSession {
       playerAnswerMap: {
         [this.player1.player.id]: {
           questionAnswerMap: {},
-          score: 0
+          score: 0,
         },
         [this.player2.player.id]: {
           questionAnswerMap: {},
-          score: 0
-        }
-      }
-    }
-    this.currentQuestionIndex = 0
+          score: 0,
+        },
+      },
+    };
+    this.currentQuestionIndex = 0;
 
     await this.initializePlayerActionHandlers(this.player1, this.player2);
     await this.initializePlayerActionHandlers(this.player2, this.player1);

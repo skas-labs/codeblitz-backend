@@ -1,4 +1,4 @@
-import { createConnection, getCustomRepository } from 'typeorm';
+import { Connection, createConnection, getCustomRepository } from 'typeorm';
 import { User } from './entities/User';
 import { Player } from './entities/Player';
 import { Question } from './entities/Question';
@@ -16,7 +16,7 @@ export const Repositories = {
   questionRepo: getCustomRepository(QuestionRepository),
 };
 
-export async function connect() {
+export async function connect(): Promise<Connection> {
   return await createConnection({
     type: 'postgres',
     username: 'codeblitz',

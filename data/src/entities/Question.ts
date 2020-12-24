@@ -6,11 +6,11 @@ export class Question {
   id: number;
 
   @Column('varchar', { length: 200 })
-  text: String;
+  text: string;
 
   @Column()
-  image: String;
+  image: string;
 
   @Column()
-  title: String;
+  title: string;
 }

@@ -15,12 +15,12 @@ export class Player {
   id: number;
 
   @Column({ unique: true })
-  username: String;
+  username: string;
 
   @Column()
-  name: String;
+  name: string;
 
-  @OneToOne((type) => User, (user) => user.player, { nullable: true })
+  @OneToOne(() => User, (user) => user.player, { nullable: true })
   @JoinColumn()
   user?: User;
 

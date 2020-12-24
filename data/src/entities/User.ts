@@ -6,7 +6,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne((type) => Player, (player) => player.user)
+  @OneToOne(() => Player, (player) => player.user)
   player: Player;
 
   @Column({ nullable: true })

@@ -5,7 +5,9 @@ import GameSession from '~/game/GameSession';
 export default class MatchMaker {
   private waitingQueue: Array<GamePlayer>;
 
-  constructor() {}
+  constructor() {
+    // noop
+  }
 
   async queuePlayer(player: GamePlayer): Promise<void> {
     if (this.waitingQueue.length === 0) {
@@ -13,6 +15,8 @@ export default class MatchMaker {
       return;
     }
 
+    // FIXME
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const otherPlayer = this.waitingQueue.pop()!;
     this.startSession(player, otherPlayer);
   }

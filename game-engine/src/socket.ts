@@ -1,7 +1,7 @@
 import { Server } from 'http';
 import { Server as WebsocketServer, Socket } from 'socket.io';
 
-export const createSocketIoServer = (httpServer: Server) => {
+export function createSocketIoServer (httpServer: Server): WebsocketServer {
   const websocketServer = new WebsocketServer(httpServer, {
     cors: {
       origin: '*',
