@@ -1,5 +1,12 @@
 # CodeBlitz
 
+## Development Guidelines 
+
+### Monorepo Practices
+
+#### Dependencies
+1. Common dependencies (used by more than one module) should go to the root `package.json`
+
 
 ### Data
 #### Entities
