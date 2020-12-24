@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cd45a3-b77e-48cb-822c-3ba783ffabbb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/routes/games.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/routes/matchreqs.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/routes/players.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game-engine/src/game/Game.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/repositories/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/repositories/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +41,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -68,7 +61,6 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/data/src/index.ts" />
       <option name="programParameters" value="" />
-      <option name="tsnodePackage" value="~/Development/CodeBlitz/codeblitz-backend/node_modules/ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -99,16 +91,12 @@
       <workItem from="1608472622187" duration="686000" />
       <workItem from="1608473333301" duration="303000" />
       <workItem from="1608473658555" duration="10890000" />
+      <workItem from="1608840118387" duration="185000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/game-engine/src/index.js" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

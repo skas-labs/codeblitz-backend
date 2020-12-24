@@ -66,12 +66,12 @@ export default class GameSession {
       const player1AnswerId =
         this.currentQuestionId &&
         this.result.playerAnswerMap[this.player1.player.id].questionAnswerMap[
-          this.currentQuestionId
+        this.currentQuestionId
         ];
       const player2AnswerId =
         this.currentQuestionId &&
         this.result.playerAnswerMap[this.player2.player.id].questionAnswerMap[
-          this.currentQuestionId
+        this.currentQuestionId
         ];
 
       emitToAll([player1.socket, player2.socket], 'question_result', {
