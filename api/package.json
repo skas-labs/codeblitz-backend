@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@codeblitz/data": "file:../data"
+    "@codeblitz/data": "../data"
   }
 }

@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@codeblitz/data": "file:../data",
+    "@codeblitz/data": "../data",
     "module-alias": "^2.2.2",
     "socket.io": "^3.0.4"
   },
