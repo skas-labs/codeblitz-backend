@@ -1,9 +1,9 @@
-import {Connection, createConnection} from 'typeorm';
-import {User} from './entities/User';
-import {Player} from './entities/Player';
-import {Question} from './entities/Question';
-import {UserRepository} from './repositories/UserRepository';
-import {QuestionRepository} from './repositories/QuestionRepository';
+import { Connection, createConnection } from 'typeorm';
+import { User } from './entities/User';
+import { Player } from './entities/Player';
+import { Question } from './entities/Question';
+import { UserRepository } from './repositories/UserRepository';
+import { QuestionRepository } from './repositories/QuestionRepository';
 
 export const Entities = {
   User,
@@ -13,7 +13,7 @@ export const Entities = {
 
 export const Repositories = {
   UserRepository,
-  QuestionRepository
+  QuestionRepository,
 };
 
 export async function connect(): Promise<Connection> {
@@ -22,7 +22,7 @@ export async function connect(): Promise<Connection> {
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [User, Player, Question],
+    entities: [ User, Player, Question ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
@@ -33,7 +33,7 @@ export async function connect(): Promise<Connection> {
 // TODO: --- For testing remove ---
 connect()
   .then(async (c) => {
-    const repo = c.getCustomRepository(QuestionRepository)
+    const repo = c.getCustomRepository(QuestionRepository);
     await repo.insert({
       title: 'Another question',
       text: 'Very interesting',
@@ -41,10 +41,9 @@ connect()
         a: new Question.Option('A'),
         b: new Question.Option('B'),
         c: new Question.Option('C'),
-        d: new Question.Option('D')
+        d: new Question.Option('D'),
       },
-      answers: new Question.Answers('a', 'b')
-    })
-
+      answers: new Question.Answers('a', 'b'),
+    });
   })
   .catch(console.error);
