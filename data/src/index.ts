@@ -1,4 +1,4 @@
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection, getCustomRepository } from 'typeorm';
 import { User } from './entities/User';
 import { Player } from './entities/Player';
 import { Question } from './entities/Question';
@@ -12,8 +12,12 @@ export const Entities = {
 };
 
 export const Repositories = {
-  UserRepository,
-  QuestionRepository,
+  get user(): UserRepository {
+    return getCustomRepository(UserRepository);
+  },
+  get question(): QuestionRepository {
+    return getCustomRepository(QuestionRepository);
+  },
 };
 
 export async function connect(): Promise<Connection> {
@@ -22,7 +26,7 @@ export async function connect(): Promise<Connection> {
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [ User, Player, Question ],
+    entities: [User, Player, Question],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,

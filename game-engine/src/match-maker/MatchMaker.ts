@@ -1,7 +1,7 @@
-import {connect, Repositories} from '@codeblitz/data';
+import { connect, Repositories } from '@codeblitz/data';
 import GamePlayer from '~/game/GamePlayer';
 import GameSession from '~/game/GameSession';
-import {QuestionRepository} from "@codeblitz/data/dist/repositories/QuestionRepository";
+import { QuestionRepository } from '@codeblitz/data/dist/repositories/QuestionRepository';
 
 export default class MatchMaker {
   private waitingQueue: Array<GamePlayer>;

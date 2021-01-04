@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import {IsUrl, MaxLength} from "class-validator";
+import { IsUrl, MaxLength } from 'class-validator';
 
 @Entity('questions')
 export class Question {
@@ -9,26 +9,26 @@ export class Question {
   @Column('text')
   text: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   @IsUrl()
   image?: string;
 
-  @Column({length: 200})
+  @Column({ length: 200 })
   @MaxLength(200)
   title: string;
 
   @Column('json')
-  options: Question.Options
+  options: Question.Options;
 
   @Column('json')
-  answers: Question.Answers
-
+  answers: Question.Answers;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Question {
   export class Option {
-    title: string
-    @IsUrl() image?: string
+    title: string;
+    @IsUrl() image?: string;
 
     constructor(title: string, image?: string) {
       this.title = title;
@@ -37,22 +37,22 @@ export namespace Question {
   }
 
   export class Options {
-    a: Option
-    b: Option
-    c: Option
-    d: Option
+    a: Option;
+    b: Option;
+    c: Option;
+    d: Option;
   }
 
-  type OptionKey = 'a' | 'b' | 'c' | 'd'
+  type OptionKey = 'a' | 'b' | 'c' | 'd';
 
   export class Answers {
-    a: boolean = false
-    b: boolean = false
-    c: boolean = false
-    d: boolean = false
+    a = false;
+    b = false;
+    c = false;
+    d = false;
 
     constructor(...keys: OptionKey[]) {
-      keys.forEach(value => this[value] = true)
+      keys.forEach((value) => (this[value] = true));
     }
   }
 }

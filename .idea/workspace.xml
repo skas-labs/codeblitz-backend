@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cd45a3-b77e-48cb-822c-3ba783ffabbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/entities/Question.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/entities/Question.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-engine/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game-engine/src/match-maker/MatchMaker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/match-maker/MatchMaker.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +41,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.9.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.14.14" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -54,23 +62,12 @@
       <recent name="$PROJECT_DIR$/data/src" />
     </key>
   </component>
-  <component name="RunManager" selected="TypeScript.index.ts">
-    <configuration name="index.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
-      <module name="codeblitz-backend" />
-      <option name="interpreterRef" value="project" />
-      <option name="interpreterOptions" value="" />
-      <option name="workingDirectory" value="$PROJECT_DIR$/data/src" />
-      <option name="tsconfigFile" value="" />
-      <option name="extraTypeScriptOptions" value="" />
-      <option name="scriptName" value="$PROJECT_DIR$/data/src/index.ts" />
-      <option name="programParameters" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/data/package.json" />
+  <component name="RunManager">
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build" />
+        <script value="lint" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -78,8 +75,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TypeScript.index.ts" />
-        <item itemvalue="npm.build" />
+        <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
   </component>
@@ -96,6 +92,7 @@
       <workItem from="1608473658555" duration="10890000" />
       <workItem from="1608840118387" duration="2958000" />
       <workItem from="1608921749577" duration="1033000" />
+      <workItem from="1609514242833" duration="514000" />
     </task>
     <servers />
   </component>
