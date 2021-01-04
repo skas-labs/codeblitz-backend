@@ -1,7 +1,7 @@
-import { connect, Repositories } from '@codeblitz/data';
+import { connect } from '@codeblitz/data';
+import { QuestionRepository } from '@codeblitz/data/dist/repositories/QuestionRepository';
 import GamePlayer from '~/game/GamePlayer';
 import GameSession from '~/game/GameSession';
-import { QuestionRepository } from '@codeblitz/data/dist/repositories/QuestionRepository';
 
 export default class MatchMaker {
   private waitingQueue: Array<GamePlayer>;
@@ -17,9 +17,8 @@ export default class MatchMaker {
     }
 
     // FIXME
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const otherPlayer = this.waitingQueue.pop()!;
-    this.startSession(player, otherPlayer);
+    await this.startSession(player, otherPlayer);
   }
 
   async startSession(player1: GamePlayer, player2: GamePlayer): Promise<GameSession> {

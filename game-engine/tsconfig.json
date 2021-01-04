@@ -1,14 +1,15 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
     "moduleResolution": "node",
     "strictPropertyInitialization": false,
     "outDir": "./dist",
-    "rootDir": "./src",      
+    "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": [
+        "*"
+      ]
     }
   },
   "include": [
