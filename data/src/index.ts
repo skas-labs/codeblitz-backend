@@ -27,8 +27,8 @@ export async function connect(): Promise<Connection> {
     entities: [User, Player, Question],
     logger: 'advanced-console',
     logging: 'all',
-    synchronize: true,
-    dropSchema: true,
+    // synchronize: true,
+    // dropSchema: true,
   });
 }
 

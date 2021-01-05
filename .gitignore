@@ -306,6 +306,13 @@ dist
 .pnp.*
 
 
+# Dists
+api/dist
+api-nest/dist
+data/dist
+game-engine/dist
+sidekick/dist
+
 # Typings
 api/types
 data/types
