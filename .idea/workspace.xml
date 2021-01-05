@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cd45a3-b77e-48cb-822c-3ba783ffabbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/controllers/players.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/src/repositories/PlayerRepository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/entities/Question.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/entities/Question.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/repos/database.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/routes/players.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/routes/players.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/game/GameSession.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game-engine/src/match-maker/MatchMaker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/game-engine/src/match-maker/MatchMaker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +68,52 @@
       <recent name="$PROJECT_DIR$/data/src" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.start:dev">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="lint" />
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build:data" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:data" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build:game-engine" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:game-engine" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/api/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/api/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -75,7 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.lint" />
+        <item itemvalue="npm.start:dev" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build:data" />
+        <item itemvalue="npm.build:game-engine" />
       </list>
     </recent_temporary>
   </component>
@@ -93,6 +143,7 @@
       <workItem from="1608840118387" duration="2958000" />
       <workItem from="1608921749577" duration="1033000" />
       <workItem from="1609514242833" duration="514000" />
+      <workItem from="1609800896947" duration="5462000" />
     </task>
     <servers />
   </component>

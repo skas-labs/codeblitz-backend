@@ -4,6 +4,7 @@ import { Player } from './entities/Player';
 import { Question } from './entities/Question';
 import { UserRepository } from './repositories/UserRepository';
 import { QuestionRepository } from './repositories/QuestionRepository';
+import { PlayerRepository } from './repositories/PlayerRepository';
 
 export const Entities = {
   User,
@@ -12,12 +13,9 @@ export const Entities = {
 };
 
 export const Repositories = {
-  get user(): UserRepository {
-    return getCustomRepository(UserRepository);
-  },
-  get question(): QuestionRepository {
-    return getCustomRepository(QuestionRepository);
-  },
+  get user(): UserRepository { return getCustomRepository(UserRepository);},
+  get question(): QuestionRepository {return getCustomRepository(QuestionRepository);},
+  get player(): PlayerRepository { return getCustomRepository(PlayerRepository); }
 };
 
 export async function connect(): Promise<Connection> {
