@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cd45a3-b77e-48cb-822c-3ba783ffabbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-nest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/controllers/players.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/routes/games.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/routes/matchreqs.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/routes/players.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +59,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -58,8 +69,18 @@
       <recent name="$PROJECT_DIR$/data/src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:debug">
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="api-nest:start:debug" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/api/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:debug" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -69,22 +90,10 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start:debug" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/api-nest/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start:debug" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start:debug" />
-        <item itemvalue="npm.build" />
-      </list>
-    </recent_temporary>
+    <list>
+      <item itemvalue="npm.api-nest:start:debug" />
+      <item itemvalue="npm.build" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -102,6 +111,8 @@
       <workItem from="1609514242833" duration="514000" />
       <workItem from="1609800896947" duration="5723000" />
       <workItem from="1609808813384" duration="4434000" />
+      <workItem from="1609815822829" duration="891000" />
+      <workItem from="1609973050213" duration="354000" />
     </task>
     <servers />
   </component>
@@ -119,6 +130,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/api-nest" />
+    </ignored-roots>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

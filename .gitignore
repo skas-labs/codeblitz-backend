@@ -308,7 +308,7 @@ dist
 
 # Dists
 api/dist
-api-nest/dist
+api/dist
 data/dist
 game-engine/dist
 sidekick/dist
