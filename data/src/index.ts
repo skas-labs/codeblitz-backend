@@ -18,8 +18,9 @@ export const Repositories = {
   get player(): PlayerRepository { return getCustomRepository(PlayerRepository); }
 };
 
-export async function connect(): Promise<Connection> {
+export async function connect(name: string): Promise<Connection> {
   return await createConnection({
+    name: `codeblitz/${name}`,
     type: 'postgres',
     username: 'codeblitz',
     database: 'codeblitz',
@@ -27,25 +28,25 @@ export async function connect(): Promise<Connection> {
     entities: [User, Player, Question],
     logger: 'advanced-console',
     logging: 'all',
-    // synchronize: true,
-    // dropSchema: true,
+    synchronize: true,
+    dropSchema: true,
   });
 }
 
 // TODO: --- For testing remove ---
-connect()
-  .then(async (c) => {
-    const repo = c.getCustomRepository(QuestionRepository);
-    await repo.insert({
-      title: 'Another question',
-      text: 'Very interesting',
-      options: {
-        a: new Question.Option('A'),
-        b: new Question.Option('B'),
-        c: new Question.Option('C'),
-        d: new Question.Option('D'),
-      },
-      answers: new Question.Answers('a', 'b'),
-    });
-  })
-  .catch(console.error);
+// connect()
+//   .then(async (c) => {
+//     const repo = c.getCustomRepository(QuestionRepository);
+//     await repo.insert({
+//       title: 'Another question',
+//       text: 'Very interesting',
+//       options: {
+//         a: new Question.Option('A'),
+//         b: new Question.Option('B'),
+//         c: new Question.Option('C'),
+//         d: new Question.Option('D'),
+//       },
+//       answers: new Question.Answers('a', 'b'),
+//     });
+//   })
+//   .catch(console.error);

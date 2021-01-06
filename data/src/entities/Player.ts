@@ -8,10 +8,11 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './User';
+import { BaseEntity } from './BaseEntity';
 
 @Entity('players')
-export class Player {
-  @PrimaryGeneratedColumn()
+export class Player extends BaseEntity{
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ unique: true })

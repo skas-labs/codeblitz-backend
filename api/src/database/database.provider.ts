@@ -4,7 +4,7 @@ import { connect, Repositories } from '@codeblitz/data';
 @Injectable()
 export abstract class Database {
   async connectDb(): Promise<void> {
-    await connect();
+    await connect('api');
   }
 
   repos = Repositories;

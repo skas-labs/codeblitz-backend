@@ -25,7 +25,7 @@ export default class MatchMaker {
     const session = new GameSession(player1, player2);
 
     // FIXME: double await
-    const questions = await (await connect()).getCustomRepository(QuestionRepository).find();
+    const questions = await (await connect('matchmaker')).getCustomRepository(QuestionRepository).find();
     session.start(questions);
 
     return session;

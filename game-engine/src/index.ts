@@ -6,7 +6,7 @@ import { createServer as createHttpServer } from 'http';
 import { connect } from '@codeblitz/data';
 
 (async () => {
-  await connect();
+  await connect('game-engine');
   const httpServer = createHttpServer(app);
   const socketioServer = createSocketIoServer(httpServer);
 

@@ -1,8 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsUrl, MaxLength } from 'class-validator';
+import { BaseEntity } from './BaseEntity';
 
 @Entity('questions')
-export class Question {
+export class Question extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
