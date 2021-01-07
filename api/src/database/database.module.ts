@@ -6,7 +6,7 @@ import { UsersService } from './users/users.service';
 @Global()
 @Module({
   providers: [ databaseProvider, PlayersService, UsersService, ],
-  exports: [ PlayersService ]
+  exports: [ PlayersService, UsersService ]
 })
 export class DatabaseModule {
 }

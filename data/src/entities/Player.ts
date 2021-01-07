@@ -26,6 +26,7 @@ export class Player extends BaseEntity{
   user?: User;
 
   //TODO: add bot
+  //TODO: add player level
 
   @ManyToMany(() => Player, (player) => player.following)
   @JoinTable({

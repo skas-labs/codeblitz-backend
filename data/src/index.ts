@@ -1,4 +1,4 @@
-import { Connection, createConnection, getCustomRepository } from 'typeorm';
+import { Connection, createConnection, getConnection, getCustomRepository } from 'typeorm';
 import { User } from './entities/User';
 import { Player } from './entities/Player';
 import { Question } from './entities/Question';
@@ -12,15 +12,19 @@ export const Entities = {
   Question,
 };
 
-export const Repositories = {
-  get user(): UserRepository { return getCustomRepository(UserRepository);},
-  get question(): QuestionRepository {return getCustomRepository(QuestionRepository);},
-  get player(): PlayerRepository { return getCustomRepository(PlayerRepository); }
-};
+export class Repositories {
+  private connection: Connection
+  constructor(name = 'default') {
+    this.connection = getConnection(name)
+  }
+  get user(): UserRepository { return this.connection.getCustomRepository(UserRepository);}
+  get question(): QuestionRepository {return this.connection.getCustomRepository(QuestionRepository);}
+  get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
+}
 
-export async function connect(name: string): Promise<Connection> {
+export async function connect(name = 'default'): Promise<Connection> {
   return await createConnection({
-    name: `codeblitz/${name}`,
+    name: name,
     type: 'postgres',
     username: 'codeblitz',
     database: 'codeblitz',

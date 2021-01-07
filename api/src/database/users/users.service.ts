@@ -8,4 +8,8 @@ export class UsersService {
 
   get repo() { return this.database.repos.user }
 
+  async findById(id: number): Promise<User> {
+    return await this.repo.findById(id)
+  }
+
 }
