@@ -58,3 +58,47 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
             update leaderboard
         }
     }
+
+
+ ## API
+
+
+`GET /players/me`
+
+`GET /players/?username=xxxx`
+
+`GET /players/?name=xxxx`
+
+`GET /players/:id`
+
+`GET /players/:id/followers`
+
+`PUT /players/:id/follow`
+
+`DELETE /players/:id/follow`
+
+`GET /players/:id/following`
+
+`GET /leaderboard`
+
+`GET /leaderboard?college=XXX`
+
+`POST /match`
+
+`GET /match/:id` (status of request, maybe not needed)
+
+`GET /games/:id`  (stats of that match)
+
+`GET /games` (only games played by current user)
+
+`GET /questions?tag=javascript&difficulty=hard`
+
+`GET /questions/:id`
+
+`GET /questions?id=11&id=23&id=56`
+
+`POST /questions`
+
+`DELETE /questions`
+
+
