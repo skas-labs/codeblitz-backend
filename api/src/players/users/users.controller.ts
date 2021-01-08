@@ -8,6 +8,11 @@ import { ApiTags } from '@nestjs/swagger';
 export class UsersController {
   @Inject() private readonly users!: UsersService
 
+  @Get()
+  async findAll() : Promise<User[]> {
+    return await this.users.findAll()
+  }
+
   @Get(':id')
   async findById(@Param('id') id: number): Promise<User> {
     return await this.users.findById(id)

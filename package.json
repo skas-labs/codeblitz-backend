@@ -6,19 +6,16 @@
   "scripts": {
     "lint": "eslint --fix '{api,data,game-engine,sidekick}/{src,test}/*.{js,ts}'",
     "format": "prettier --write '{api,data,game-engine,sidekick}/src/**/*.{js,ts}'",
-
     "build:data": "cd data && npm run build",
     "build:api": "cd api && npm run build",
     "build:game-engine": "cd game-engine && npm run build",
     "build:sidekick": "cd sidekick && npm run build",
     "build": "run-s build:*",
-
     "clean:data": "cd data && npm run clean",
     "clean:api": "cd api && npm run clean",
     "clean:game-engine": "cd game-engine && npm run clean",
     "clean:sidekick": "cd sidekick && npm run clean",
     "clean": "run-p clean:*",
-
     "install:data": "cd data && npm install",
     "install:api": "cd api && npm install",
     "install:game-engine": "cd game-engine && npm install",
@@ -29,7 +26,8 @@
   "license": "ISC",
   "dependencies": {
     "class-validator": "^0.12.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",
