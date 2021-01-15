@@ -63,42 +63,42 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
  ## API
 
 
-`GET /players/me`
+- [ ] `GET /players/me`
 
-`GET /players/?username=xxxx`
+- [x] `GET /players/?username=xxxx`
 
-`GET /players/?name=xxxx`
+- [x] `GET /players/?name=xxxx`
 
-`GET /players/:id`
+- [x] `GET /players/:id`
 
-`GET /players/:id/followers`
+- [ ] `GET /players/:id/followers`
 
-`PUT /players/:id/follow`
+- [ ] `PUT /players/:id/follow`
 
-`DELETE /players/:id/follow`
+- [ ] `DELETE /players/:id/follow`
 
-`GET /players/:id/following`
+- [ ] `GET /players/:id/following`
 
-`GET /leaderboard`
+- [ ] `GET /leaderboard`
 
-`GET /leaderboard?college=XXX`
+- [ ] `GET /leaderboard?college=XXX`
 
-`POST /match`
+- [ ] `POST /match`
 
-`GET /match/:id` (status of request, maybe not needed)
+- [ ] `GET /match/:id` (status of request, maybe not needed)
 
-`GET /games/:id`  (stats of that match)
+- [ ] `GET /games/:id`  (stats of that match)
 
-`GET /games` (only games played by current user)
+- [ ] `GET /games` (only games played by current user)
 
-`GET /questions?tag=javascript&difficulty=hard`
+- [ ] `GET /questions?tag=javascript&difficulty=hard`
 
-`GET /questions/:id`
+- [ ] `GET /questions/:id`
 
-`GET /questions?id=11&id=23&id=56`
+- [ ] `GET /questions?id=11&id=23&id=56`
 
-`POST /questions`
+- [ ] `POST /questions`
 
-`DELETE /questions`
+- [ ] `DELETE /questions`
 
 

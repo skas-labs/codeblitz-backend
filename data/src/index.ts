@@ -22,7 +22,7 @@ export class Repositories {
   get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
 }
 
-export async function connect(name = 'default'): Promise<Connection> {
+export async function connect(name = 'default', force = false): Promise<Connection> {
   return await createConnection({
     name: name,
     type: 'postgres',
@@ -33,7 +33,7 @@ export async function connect(name = 'default'): Promise<Connection> {
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
-    dropSchema: true,
+    dropSchema: force,
   });
 }
 

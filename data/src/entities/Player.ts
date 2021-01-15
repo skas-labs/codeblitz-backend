@@ -25,7 +25,9 @@ export class Player extends BaseEntity{
   @JoinColumn()
   user?: User;
 
-  //TODO: add bot
+  @Column()
+  isBot?: boolean
+
   //TODO: add player level
 
   @ManyToMany(() => Player, (player) => player.following)
@@ -34,8 +36,8 @@ export class Player extends BaseEntity{
     joinColumn: { name: 'follower' },
     inverseJoinColumn: { name: 'following' },
   })
-  followers: Player[];
+  followers: Promise<Player[]>;
 
   @ManyToMany(() => Player, (player) => player.followers)
-  following: Player[];
+  following: Promise<Player[]>;
 }

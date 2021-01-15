@@ -18,7 +18,7 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.repo.find();
+    return await this.repo.findAll();
   }
 
 }

@@ -23,11 +23,21 @@ export class PlayersService {
     if (searchOptions.name) return this.repo.findByName(searchOptions.name)
 
     // if no options, find all players
-    return this.repo.find()
+    return this.repo.findAll()
   }
 
   async findById(id: number): Promise<Player> {
     return await this.repo.findById(id);
+  }
+
+  async findFollowers(id: number): Promise<Player[]> {
+    const player = await this.repo.findById(id)
+    return await player.followers
+  }
+
+  async findFollowing(id: number): Promise<Player[]> {
+    const player = await this.repo.findById(id)
+    return await player.following
   }
 
 }
