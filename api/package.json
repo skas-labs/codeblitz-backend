@@ -5,6 +5,9 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "nest build",

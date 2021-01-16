@@ -1,0 +1,25 @@
+{
+  "name": "@codeblitz/seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "prestart": "npm run build",
+    "start": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@codeblitz/data": "../data",
+    "inquirer": "^7.3.3"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.1"
+  }
+}

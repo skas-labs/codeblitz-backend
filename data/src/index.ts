@@ -1,4 +1,4 @@
-import { Connection, createConnection, getConnection, getCustomRepository } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 import { User } from './entities/User';
 import { Player } from './entities/Player';
 import { Question } from './entities/Question';
@@ -12,45 +12,44 @@ export const Entities = {
   Question,
 };
 
+export class DataStore {
+  connection: Connection;
+  repositories: Repositories;
+
+  constructor(connection: Connection, repositories: Repositories) {
+    this.connection = connection;
+    this.repositories = repositories;
+  }
+}
+
 export class Repositories {
-  private connection: Connection
-  constructor(name = 'default') {
-    this.connection = getConnection(name)
+  private connection: Connection;
+  private constructor(name = 'default') {
+    this.connection = getConnection(name);
   }
   get user(): UserRepository { return this.connection.getCustomRepository(UserRepository);}
   get question(): QuestionRepository {return this.connection.getCustomRepository(QuestionRepository);}
   get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
+
+  static getInstance(name: string): Repositories {
+    return new Repositories(name)
+  }
 }
 
-export async function connect(name = 'default', force = false): Promise<Connection> {
-  return await createConnection({
+
+export async function connect(name = 'default', force = false): Promise<DataStore> {
+  const connection = await createConnection({
     name: name,
     type: 'postgres',
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [User, Player, Question],
+    entities: [ User, Player, Question ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
     dropSchema: force,
   });
+  const repositories = Repositories.getInstance(name);
+  return new DataStore(connection, repositories);
 }
-
-// TODO: --- For testing remove ---
-// connect()
-//   .then(async (c) => {
-//     const repo = c.getCustomRepository(QuestionRepository);
-//     await repo.insert({
-//       title: 'Another question',
-//       text: 'Very interesting',
-//       options: {
-//         a: new Question.Option('A'),
-//         b: new Question.Option('B'),
-//         c: new Question.Option('C'),
-//         d: new Question.Option('D'),
-//       },
-//       answers: new Question.Answers('a', 'b'),
-//     });
-//   })
-//   .catch(console.error);

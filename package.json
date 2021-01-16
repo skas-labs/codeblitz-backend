@@ -10,6 +10,7 @@
     "build:api": "cd api && npm run build",
     "build:game-engine": "cd game-engine && npm run build",
     "build:sidekick": "cd sidekick && npm run build",
+    "build:seed": "cd seed && npm run build",
     "build": "run-s build:*",
     "clean:data": "cd data && npm run clean",
     "clean:api": "cd api && npm run clean",
@@ -20,7 +21,9 @@
     "install:api": "cd api && npm install",
     "install:game-engine": "cd game-engine && npm install",
     "install:sidekick": "cd sidekick && npm install",
-    "postinstall": "run-p install:*"
+    "install:seed": "cd seed && npm install",
+    "postinstall": "run-p install:*",
+    "seed": "cd seed && npm run start"
   },
   "author": "",
   "license": "ISC",

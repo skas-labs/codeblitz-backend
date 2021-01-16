@@ -3,11 +3,11 @@ import { connect, Repositories } from '@codeblitz/data';
 
 @Injectable()
 export abstract class Database {
-  repos!: Repositories
+  repos!: Repositories;
 
   async connectDb(): Promise<void> {
-    await connect('api');
-    this.repos = new Repositories('api');
+    const store = await connect('api');
+    this.repos = store.repositories;
   }
 
 }

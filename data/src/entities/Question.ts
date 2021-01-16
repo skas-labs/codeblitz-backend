@@ -7,14 +7,14 @@ export class Question extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column('text')
-  text: string;
+  @Column('text', {default: ''})
+  text?: string;
 
-  @Column({ nullable: true })
+  @Column({nullable: true})
   @IsUrl()
   image?: string;
 
-  @Column({ length: 200 })
+  @Column({length: 200})
   @MaxLength(200)
   title: string;
 
@@ -37,14 +37,22 @@ export namespace Question {
     }
   }
 
+  type OptionKey = 'a' | 'b' | 'c' | 'd';
+
   export class Options {
     a: Option;
     b: Option;
     c: Option;
     d: Option;
+
+    constructor(textOptions: { [k in OptionKey]: string }) {
+      this.a = {title: textOptions['a']};
+      this.b = {title: textOptions['b']};
+      this.c = {title: textOptions['c']};
+      this.d = {title: textOptions['d']};
+    }
   }
 
-  type OptionKey = 'a' | 'b' | 'c' | 'd';
 
   export class Answers {
     a = false;

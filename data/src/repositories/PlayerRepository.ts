@@ -38,4 +38,5 @@ export class PlayerRepository extends AbstractRepository<Player> {
     // TODO : handle pagination
     return await this.repository.find()
   }
+
 }
