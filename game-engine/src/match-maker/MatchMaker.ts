@@ -1,5 +1,5 @@
 import { connect } from '@codeblitz/data';
-import { QuestionRepository } from '@codeblitz/data/dist/repositories/QuestionRepository';
+import { QuestionRepository } from '@codeblitz/data/dist/repositories/question.repository';
 import GamePlayer from '~/game/GamePlayer';
 import GameSession from '~/game/GameSession';
 

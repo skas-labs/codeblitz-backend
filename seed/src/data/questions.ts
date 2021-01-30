@@ -1,5 +1,5 @@
-import { QuestionRepository } from '@codeblitz/data/dist/repositories/QuestionRepository';
-import { Question } from '@codeblitz/data/dist/entities/Question';
+import { QuestionRepository } from '@codeblitz/data/dist/repositories/question.repository';
+import { Question } from '@codeblitz/data/dist/entities/question.entity';
 import Answers = Question.Answers;
 import Options = Question.Options;
 

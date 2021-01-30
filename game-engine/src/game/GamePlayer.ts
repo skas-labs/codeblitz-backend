@@ -1,4 +1,4 @@
-import { Player } from '@codeblitz/data/src/entities/Player';
+import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { Socket } from 'socket.io';
 
 export default class GamePlayer {

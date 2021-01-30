@@ -1,5 +1,5 @@
 import { AbstractRepository, EntityRepository } from 'typeorm';
-import { User } from '../entities/User';
+import { User } from '../entities/user.entity';
 
 class UserNotFoundError extends Error {
   name = 'ERR_USER_NOT_FOUND';

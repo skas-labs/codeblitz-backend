@@ -62,28 +62,80 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 
  ## API
 
+- [ ] `POST /otp`  ⚠️
 
-- [ ] `GET /players/me`
+        REQ
+        ```
+        { phno, nonce }          
+        ```
+        RES 
+        ```
+        { phno, hash }  
+        ```
 
-- [x] `GET /players/?username=xxxx`
+- [ ] `POST /otp/verify` ⚠️
 
-- [x] `GET /players/?name=xxxx`
+        REQ
+        ```
+        { phno, hash, otp }          
+        ```
+        RES 
+        ```
+        { access_token, new_user: boolean  }  
+        ```
+
+- [ ] `POST /players` ⚠️
+
+      REQ
+      ```
+      { Header(access_token), username, name, email?, phno? }
+      ```
+
+- [ ] `GET /players/me`  ⚠️
+
+        RES
+      ```
+      username
+      name
+      score
+      stats
+      level
+      ```  
+
+- [x] `GET /players/?sort=trending` {trending|top|new|online}
+
+    - [ ] `GET /players/?username=xxxx`
+
+    - [ ] `GET /players/?name=xxxx`
 
 - [x] `GET /players/:id`
 
-- [ ] `GET /players/:id/followers`
+- [ ] `GET /players/:id/followers` ⚠️
 
-- [ ] `PUT /players/:id/follow`
+    - [ ] `GET /players/:id/followers/?username=xxxx` ⚠️
 
-- [ ] `DELETE /players/:id/follow`
+    - [ ] `GET /players/:id/followers/?name=xxxx` ⚠️
 
-- [ ] `GET /players/:id/following`
+- [ ] `PUT /players/:id/follow` ⚠️
+
+- [ ] `DELETE /players/:id/follow` ⚠️
+
+- [ ] `GET /players/:id/following` ⚠️
+
+    - [ ] `GET /players/:id/following/?username=xxxx` ⚠️
+
+    - [ ] `GET /players/:id/following/?name=xxxx` ⚠️
+
 
 - [ ] `GET /leaderboard`
 
 - [ ] `GET /leaderboard?college=XXX`
 
-- [ ] `POST /match`
+- [ ] `GET /leaderboard?country=XXX`
+
+- [ ] `GET /leaderboard?city=XXX`
+
+- [ ] `POST /match` (create match request)
 
 - [ ] `GET /match/:id` (status of request, maybe not needed)
 

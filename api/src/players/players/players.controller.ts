@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Inject, Param, Put, Query } from '@nestjs/common';
 import { PlayersService } from '../../database/players/players.service';
-import { Player } from '@codeblitz/data/dist/entities/Player';
+import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { ApiPropertyOptional, ApiTags } from '@nestjs/swagger';
 
 class FindAllQueryParams {

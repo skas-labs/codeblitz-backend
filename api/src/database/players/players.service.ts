@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Database } from '../database.provider';
-import { Player } from '@codeblitz/data/dist/entities/Player';
-import { PlayerRepository } from '@codeblitz/data/dist/repositories/PlayerRepository';
+import { Player } from '@codeblitz/data/dist/entities/player.entity';
+import { PlayerRepository } from '@codeblitz/data/dist/repositories/player.repository';
 
 interface SearchOptions {
   username?: string

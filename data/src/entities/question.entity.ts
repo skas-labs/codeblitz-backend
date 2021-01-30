@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsUrl, MaxLength } from 'class-validator';
-import { BaseEntity } from './BaseEntity';
+import { BaseEntity } from './_base.entity';
 
 @Entity('questions')
 export class Question extends BaseEntity {

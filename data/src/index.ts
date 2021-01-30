@@ -1,10 +1,10 @@
 import { Connection, createConnection, getConnection } from 'typeorm';
-import { User } from './entities/User';
-import { Player } from './entities/Player';
-import { Question } from './entities/Question';
-import { UserRepository } from './repositories/UserRepository';
-import { QuestionRepository } from './repositories/QuestionRepository';
-import { PlayerRepository } from './repositories/PlayerRepository';
+import { User } from './entities/user.entity';
+import { Player } from './entities/player.entity';
+import { Question } from './entities/question.entity';
+import { UserRepository } from './repositories/user.repository';
+import { QuestionRepository } from './repositories/question.repository';
+import { PlayerRepository } from './repositories/player.repository';
 
 export const Entities = {
   User,

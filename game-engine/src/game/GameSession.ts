@@ -1,4 +1,4 @@
-import { Question } from '@codeblitz/data/src/entities/Question';
+import { Question } from '@codeblitz/data/dist/entities/question.entity';
 import { emitToAll } from '~/utils/socket';
 import GamePlayer from './GamePlayer';
 

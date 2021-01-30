@@ -23,7 +23,11 @@
     "install:sidekick": "cd sidekick && npm install",
     "install:seed": "cd seed && npm install",
     "postinstall": "run-p install:*",
-    "seed": "cd seed && npm run start"
+    "seed": "cd seed && npm run start",
+    "test:api": "cd api && npm run test",
+    "test:data": "cd data && npm run test",
+    "test:game-engine": "cd game-engine && npm run test",
+    "test": "run-p test:*"
   },
   "author": "",
   "license": "ISC",

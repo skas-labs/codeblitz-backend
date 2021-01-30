@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Database } from '../database.provider';
-import { User } from '@codeblitz/data/dist/entities/User';
-import { UserRepository } from '@codeblitz/data/dist/repositories/UserRepository';
+import { User } from '@codeblitz/data/dist/entities/user.entity';
+import { UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
 
 @Injectable()
 export class UsersService {

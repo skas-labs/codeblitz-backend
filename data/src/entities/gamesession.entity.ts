@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
-import { Player } from './Player';
+import { Player } from './player.entity';
 
 @Entity('game_sessions')
 export class GameSession {

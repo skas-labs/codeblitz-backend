@@ -1,6 +1,6 @@
 import { Controller, Get, Inject, Param } from '@nestjs/common';
 import { UsersService } from '../../database/users/users.service';
-import { User } from '@codeblitz/data/dist/entities/User';
+import { User } from '@codeblitz/data/dist/entities/user.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('players', 'users')

@@ -1,5 +1,5 @@
 import { AbstractRepository, EntityRepository, ILike } from 'typeorm';
-import { Player } from '../entities/Player';
+import { Player } from '../entities/player.entity';
 
 class PlayerNotFoundError extends Error {
   name = 'ERR_PLAYER_NOT_FOUND';

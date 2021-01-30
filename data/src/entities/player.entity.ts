@@ -7,8 +7,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User } from './User';
-import { BaseEntity } from './BaseEntity';
+import { User } from './user.entity';
+import { BaseEntity } from './_base.entity';
 
 @Entity('players')
 export class Player extends BaseEntity{
