@@ -9,7 +9,7 @@ class FindAllQueryParams {
 }
 
 @ApiTags('players')
-@Controller('players')
+@Controller()
 export class PlayersController {
   @Inject() private readonly players!: PlayersService;
 
