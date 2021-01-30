@@ -1,5 +1,5 @@
 import { Body, Controller, Logger, Post } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiProperty, ApiResponse, ApiResponseProperty, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiProperty, ApiResponse, ApiResponseProperty, ApiTags } from '@nestjs/swagger';
 import { IsMobilePhone, IsNumberString, IsUUID, Length } from 'class-validator';
 import { v4 as uuid4 } from 'uuid';
 
@@ -13,7 +13,7 @@ class OtpSendBody {
 @ApiResponse({})
 class OtpSendResponse extends OtpSendBody {
 
-  @ApiResponseProperty({example: '1ee7cb89-7465-4872-914f-783a06911927'})
+  @ApiProperty({required: true, example: '1ee7cb89-7465-4872-914f-783a06911927'})
   @IsUUID()
   nonce!: string;
 
@@ -28,15 +28,21 @@ class OtpVerifyBody extends OtpSendResponse {
   @ApiProperty({required: true, example: '0000'})
   @Length(4, 4)
   @IsNumberString()
-  otp!: string
+  otp!: string;
 }
 
 @ApiResponse({})
 class OtpVerifyResponse {
   @ApiResponseProperty()
-  accessToken!: string
-  isNewUser!: boolean
+  accessToken!: string;
+  @ApiResponseProperty()
+  isNewUser!: boolean;
 
+
+  constructor(accessToken: string, isNewUser = false) {
+    this.accessToken = accessToken;
+    this.isNewUser = isNewUser;
+  }
 }
 
 @ApiTags('auth')
@@ -46,7 +52,7 @@ export class OtpController {
   @ApiCreatedResponse({type: OtpSendResponse})
   @Post('/')
   async requestOtp(@Body() reqOtp: OtpSendBody): Promise<OtpSendResponse> {
-    Logger.log(JSON.stringify(reqOtp), 'OTP_SEND');
+    Logger.debug(JSON.stringify(reqOtp), 'OTP_SEND');
     return new OtpSendResponse(
       reqOtp.phno,
       uuid4().toString()
@@ -54,7 +60,11 @@ export class OtpController {
   }
 
   @Post('/verify')
-  async verifyOtp(@Body() otpVerify: OtpVerifyBody): Promise<void> {
-
+  async verifyOtp(@Body() otpVerify: OtpVerifyBody): Promise<OtpVerifyResponse> {
+    Logger.debug(JSON.stringify(otpVerify), 'OTP_VERIFY')
+    return new OtpVerifyResponse(
+      uuid4().toString(),
+      true
+    );
   }
 }
