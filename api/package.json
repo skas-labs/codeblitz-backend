@@ -31,7 +31,8 @@
     "fastify-swagger": "^3.5.0",
     "nest-router": "^1.0.9",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
@@ -39,6 +40,7 @@
     "@nestjs/testing": "^7.5.1",
     "@types/jest": "^26.0.15",
     "@types/supertest": "^2.0.10",
+    "@types/uuid": "^8.3.0",
     "jest": "^26.6.3",
     "supertest": "^6.0.0",
     "ts-jest": "^26.4.3",
