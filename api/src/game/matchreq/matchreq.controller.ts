@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('api/game/matchreq')
+@Controller('game/matchreq')
 export class MatchreqController {}

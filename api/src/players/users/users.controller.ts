@@ -4,7 +4,7 @@ import { User } from '@codeblitz/data/dist/entities/user.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('players', 'users')
-@Controller('api/users')
+@Controller('users')
 export class UsersController {
   @Inject() private readonly users!: UsersService
 

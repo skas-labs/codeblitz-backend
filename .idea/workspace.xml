@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22cd45a3-b77e-48cb-822c-3ba783ffabbb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/api/src/app.router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/auth.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/game/matchreq/matchreq.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/game/matchreq/matchreq.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/game/sessions/sessions.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/game/sessions/sessions.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/players/players/players.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/players/players/players.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/players/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/players/users/users.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

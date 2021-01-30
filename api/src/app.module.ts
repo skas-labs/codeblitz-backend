@@ -5,9 +5,21 @@ import { PlayersModule } from './players/players.module';
 import { GameModule } from './game/game.module';
 import { QuestionsModule } from './questions/questions.module';
 import { DatabaseModule } from './database/database.module';
+import { RouterModule } from 'nest-router';
+import { appRouter } from './app.router';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ PlayersModule, GameModule, QuestionsModule, DatabaseModule ],
+  imports: [
+    // router
+    RouterModule.forRoutes(appRouter),
+    // apis
+    PlayersModule, GameModule, QuestionsModule,
+    //auth
+    AuthModule,
+    // database
+    DatabaseModule,
+  ],
   controllers: [ AppController ],
   providers: [ AppService ],
 })
