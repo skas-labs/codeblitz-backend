@@ -1,4 +1,4 @@
-import { AbstractRepository, EntityRepository, ILike } from 'typeorm';
+import { AbstractRepository, DeepPartial, EntityRepository, ILike } from 'typeorm';
 import { Player } from '../entities/player.entity';
 
 class PlayerNotFoundError extends Error {
@@ -7,6 +7,11 @@ class PlayerNotFoundError extends Error {
 
 @EntityRepository(Player)
 export class PlayerRepository extends AbstractRepository<Player> {
+
+  async createPlayer(player: DeepPartial<Player>): Promise<Player> {
+    // TODO: check if player exists, and userame is valid
+    return this.repository.save(player)
+  }
 
   async findById(id: number): Promise<Player> {
     const player = await this.repository.findOne(id);
