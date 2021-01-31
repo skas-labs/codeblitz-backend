@@ -27,7 +27,10 @@
     "test:api": "cd api && npm run test",
     "test:data": "cd data && npm run test",
     "test:game-engine": "cd game-engine && npm run test",
-    "test": "run-p test:*"
+    "test": "run-p test:*",
+    "start:api:prod": "cd api && npm run start:prod",
+    "prestart:prod": "npm run build",
+    "start:prod": "run-p start:*:*"
   },
   "author": "",
   "license": "ISC",

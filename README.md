@@ -62,27 +62,9 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 
  ## API
 
-- [ ] `POST /otp`  ⚠️
+- [x] `POST /otp`
 
-        REQ
-        ```
-        { phno, nonce }          
-        ```
-        RES 
-        ```
-        { phno, hash }  
-        ```
-
-- [ ] `POST /otp/verify` ⚠️
-
-        REQ
-        ```
-        { phno, hash, otp }          
-        ```
-        RES 
-        ```
-        { access_token, new_user: boolean  }  
-        ```
+- [x] `POST /otp/verify`
 
 - [ ] `POST /players` ⚠️
 
