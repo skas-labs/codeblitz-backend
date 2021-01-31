@@ -4,13 +4,17 @@ import { User } from '../entities/user.entity';
 class UserNotFoundError extends Error {
   name = 'ERR_USER_NOT_FOUND';
 }
+
 class UserCreateError extends Error {
-  name = 'ERR_USER_CREATE'
+  name = 'ERR_USER_CREATE';
+
   constructor(message: string) {
     super(message);
     this.message = message;
   }
 }
+
+type CreateUserOptions = { emailid: string, phno: string }
 
 @EntityRepository(User)
 export class UserRepository extends AbstractRepository<User> {
@@ -32,24 +36,25 @@ export class UserRepository extends AbstractRepository<User> {
     return await this.repository.find();
   }
 
-  async createUser({email, phno}: { email?: string, phno?: string }): Promise<User> {
-    if (!email && !phno) {
-      throw new UserCreateError('Phone Number or Email is needed to create user')
+  async createUser({emailid, phno}: CreateUserOptions): Promise<User> {
+    if (!emailid && !phno) {
+      throw new UserCreateError('Phone Number or Email is needed to create user');
     }
 
     const existing = await this.repository.findOne({
-      where: [ {phoneNumber: phno}, /* or */ { email: email } ]
-    })
-
-    if (existing) {
-      throw new UserCreateError('User with same email/phno exists')
-    }
-
-    const user = await this.repository.save({
-      email: email,
-      phoneNumber: phno,
+      where: [ {phoneNumber: phno}, /* or */ {email: emailid} ]
     });
 
-    return user
+    if (existing) {
+      throw new UserCreateError('User with same email/phno exists');
+    }
+
+    const newUser = new User()
+    newUser.phoneNumber = phno
+    newUser.email = emailid
+
+    const user = await this.repository.save(newUser);
+
+    return user;
   }
 }
