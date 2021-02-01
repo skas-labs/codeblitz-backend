@@ -9,7 +9,14 @@ export async function seedPlayers(repo: PlayerRepository, userRepo: UserReposito
     createPlayer(repo, userRepo, '+919999955555', 'testplayerc', 'Test PlayerC'),
   ])
 
-  for (const p of players) {
+  await repo.followPlayer(players[0], players[1])
+  await repo.followPlayer(players[1], players[2])
+  await repo.followPlayer(players[1], players[0])
+  await repo.followPlayer(players[2], players[0])
+
+  const allPlayers = await repo.findAll(true)
+
+  for (const p of allPlayers) {
     console.log(p)
   }
 }

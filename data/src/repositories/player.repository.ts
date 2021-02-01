@@ -5,12 +5,16 @@ class PlayerNotFoundError extends Error {
   name = 'ERR_PLAYER_NOT_FOUND';
 }
 
+class PlayerFollowError extends Error {
+  name = 'ERR_PLAYER_FOLLOW';
+}
+
 @EntityRepository(Player)
 export class PlayerRepository extends AbstractRepository<Player> {
 
   async createPlayer(player: DeepPartial<Player>): Promise<Player> {
     // TODO: check if player exists, and userame is valid
-    return this.repository.save(player)
+    return this.repository.save(player);
   }
 
   async findById(id: number): Promise<Player> {
@@ -39,9 +43,26 @@ export class PlayerRepository extends AbstractRepository<Player> {
     return players;
   }
 
-  async findAll(): Promise<Player[]> {
+  async followPlayer(follower: Player, followee: Player): Promise<boolean> {
+
+    const existingFollower = await this.repository.findOne(follower.id)
+
+    if (!existingFollower) throw new PlayerFollowError(`Follower ${ follower.id } doesn't exist`);
+
+    await this.repository.createQueryBuilder()
+      .relation(Player, 'following')
+      .of(existingFollower)
+      .add(followee);
+
+    return true;
+
+  }
+
+  async findAll(eagerLoadFollows = false): Promise<Player[]> {
     // TODO : handle pagination
-    return await this.repository.find()
+    return await this.repository.find({
+      relations: (eagerLoadFollows ? [ 'following', 'followers' ] : [])
+    });
   }
 
 }

@@ -33,8 +33,8 @@ export class Player extends _baseEntity{
   @ManyToMany(() => Player, (player) => player.following)
   @JoinTable({
     name: 'player_followings',
-    joinColumn: { name: 'follower' },
-    inverseJoinColumn: { name: 'following' },
+    joinColumn: { name: 'following' },
+    inverseJoinColumn: { name: 'follower' },
   })
   followers: Promise<Player[]>;
 

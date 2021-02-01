@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix '{api,data,game-engine,sidekick}/{src,test}/*.{js,ts}'",
-    "format": "prettier --write '{api,data,game-engine,sidekick}/src/**/*.{js,ts}'",
+    "format": "prettier --write '{api,data,game-engine,sidekick}/{src,test}/**/*.{js,ts}'",
     "build:data": "cd data && npm run build",
     "build:api": "cd api && npm run build",
     "build:game-engine": "cd game-engine && npm run build",
