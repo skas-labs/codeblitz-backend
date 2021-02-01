@@ -23,10 +23,10 @@ export class Player extends _baseEntity {
 
   //TODO: add player level
 
-  @OneToMany(() => Follow, follow => follow.followee)
+  @OneToMany(() => Follow, follow => follow.follower)
   followers: () => Promise<Follow[]>;
 
-  @OneToMany(() => Follow, follow => follow.follower)
+  @OneToMany(() => Follow, follow => follow.followee)
   following: () => Promise<Follow[]>;
 
 }

@@ -64,10 +64,7 @@ export class PlayerRepository extends AbstractRepository<Player> {
 
   async findAll(): Promise<Player[]> {
     // TODO : handle pagination
-    return await this.repository.find({
-      relations: ['following', 'followers'],
-      loadEagerRelations: true
-    });
+    return await this.repository.find();
   }
 
 }
