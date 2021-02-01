@@ -5,6 +5,7 @@ import { Question } from './entities/question.entity';
 import { UserRepository } from './repositories/user.repository';
 import { QuestionRepository } from './repositories/question.repository';
 import { PlayerRepository } from './repositories/player.repository';
+import { Follow } from './entities/follow.entity';
 
 export const Entities = {
   User,
@@ -44,7 +45,7 @@ export async function connect(name = 'default', force = false): Promise<DataStor
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [ User, Player, Question ],
+    entities: [ User, Player, Follow, Question ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,

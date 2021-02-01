@@ -1,5 +1,6 @@
 import { AbstractRepository, DeepPartial, EntityRepository, ILike } from 'typeorm';
 import { Player } from '../entities/player.entity';
+import { Follow } from '../entities/follow.entity';
 
 class PlayerNotFoundError extends Error {
   name = 'ERR_PLAYER_NOT_FOUND';
@@ -11,6 +12,7 @@ class PlayerFollowError extends Error {
 
 @EntityRepository(Player)
 export class PlayerRepository extends AbstractRepository<Player> {
+
 
   async createPlayer(player: DeepPartial<Player>): Promise<Player> {
     // TODO: check if player exists, and userame is valid
@@ -43,25 +45,28 @@ export class PlayerRepository extends AbstractRepository<Player> {
     return players;
   }
 
-  async followPlayer(follower: Player, followee: Player): Promise<boolean> {
+  async followPlayer(follower: Player, followee: Player): Promise<Follow> {
+    const followRepo = this.repository.manager.connection.getRepository(Follow)
 
-    const existingFollower = await this.repository.findOne(follower.id)
+    const existingFollow = await followRepo.findOne({
+      where: { follower, followee }
+    })
 
-    if (!existingFollower) throw new PlayerFollowError(`Follower ${ follower.id } doesn't exist`);
+    if (existingFollow) throw new PlayerNotFoundError(
+      `${follower.username} already follows ${followee.username}`
+    )
 
-    await this.repository.createQueryBuilder()
-      .relation(Player, 'following')
-      .of(existingFollower)
-      .add(followee);
+    const follow = await followRepo.save({followee, follower})
 
-    return true;
+    return follow;
 
   }
 
-  async findAll(eagerLoadFollows = false): Promise<Player[]> {
+  async findAll(): Promise<Player[]> {
     // TODO : handle pagination
     return await this.repository.find({
-      relations: (eagerLoadFollows ? [ 'following', 'followers' ] : [])
+      relations: ['following', 'followers'],
+      loadEagerRelations: true
     });
   }
 
