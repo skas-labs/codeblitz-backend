@@ -1,4 +1,4 @@
-import { AbstractRepository, DeepPartial, EntityRepository } from 'typeorm';
+import { AbstractRepository, DeepPartial, EntityRepository, FindManyOptions } from 'typeorm';
 import { Question } from '../entities/question.entity';
 
 @EntityRepository(Question)
@@ -8,7 +8,7 @@ export class QuestionRepository extends AbstractRepository<Question> {
     return await this.repository.save(question);
   }
 
-  async findAll(): Promise<Question[]> {
-    return this.repository.find();
+  async findAll(options?: FindManyOptions<Question>): Promise<Question[]> {
+    return this.repository.find(options);
   }
 }

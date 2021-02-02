@@ -31,13 +31,15 @@ export class PlayersService {
   }
 
   async findFollowers(id: number): Promise<Player[]> {
-    const player = await this.repo.findById(id)
-    return await player.followers
+    // const player = await this.repo.findById(id)
+    // return await player.followers
+    return []
   }
 
   async findFollowing(id: number): Promise<Player[]> {
-    const player = await this.repo.findById(id)
-    return await player.following
+    // const player = await this.repo.findById(id)
+    // return await player.following
+    return []
   }
 
 }
