@@ -23,6 +23,7 @@
     "install:sidekick": "cd sidekick && npm install",
     "install:seed": "cd seed && npm install",
     "postinstall": "run-p install:*",
+    "preseed": "npm run build:data",
     "seed": "cd seed && npm run start",
     "test:api": "cd api && npm run test",
     "test:data": "cd data && npm run test",

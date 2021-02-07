@@ -22,11 +22,4 @@ export class Player extends _baseEntity {
   isBot?: boolean;
 
   //TODO: add player level
-
-  @OneToMany(() => Follow, follow => follow.follower)
-  followers: () => Promise<Follow[]>;
-
-  @OneToMany(() => Follow, follow => follow.followee)
-  following: () => Promise<Follow[]>;
-
 }

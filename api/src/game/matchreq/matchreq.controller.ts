@@ -12,7 +12,7 @@ export class MatchCreatedResponse {
     this.matchId = matchId;
   }
 }
-@Controller('game/match')
+@Controller('matches')
 export class MatchreqController {
   @Post('/')
   async createMatch(): Promise<MatchCreatedResponse> {

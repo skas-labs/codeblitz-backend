@@ -1,6 +1,7 @@
 import {UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
 
 
+/** @internal */
 export async function seedUsers(repo: UserRepository) {
 
   const users = await Promise.all([

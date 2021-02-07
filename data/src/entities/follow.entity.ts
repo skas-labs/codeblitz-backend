@@ -6,9 +6,6 @@ import { Player } from './player.entity';
 @Entity('follow')
 export class Follow extends _baseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
-  id: string
-
   @ManyToOne(() => Player, {primary: true})
   follower!: Player;
 

@@ -2,6 +2,7 @@ import { PlayerRepository } from '@codeblitz/data/dist/repositories/player.repos
 import { UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 
+/** @internal */
 export async function seedPlayers(repo: PlayerRepository, userRepo: UserRepository) {
   const players = await Promise.all([
     createPlayer(repo, userRepo, '+918800233266', 'championswimmer', 'Arnav Gupta'),
