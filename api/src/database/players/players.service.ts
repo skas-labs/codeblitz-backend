@@ -3,6 +3,7 @@ import { Database } from '../database.provider';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { PlayerRepository } from '@codeblitz/data/dist/repositories/player.repository';
 import { Lazy } from '../../utils/lazy.decorator';
+import { User } from '@codeblitz/data/dist/entities/user.entity';
 
 interface SearchOptions {
   username?: string
@@ -22,6 +23,10 @@ export class PlayersService {
 
     // if no options, find all players
     return this.repo.findAll();
+  }
+
+  async findByUser(user: User): Promise<Player> {
+    return await this.repo.findByUser(user)
   }
 
   async findById(id: number): Promise<Player> {

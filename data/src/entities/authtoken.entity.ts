@@ -11,7 +11,7 @@ export class AuthToken extends _baseEntity {
   @IsUUID()
   token: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, {eager: true})
   user: User;
 
 }

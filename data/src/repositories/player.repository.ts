@@ -1,6 +1,7 @@
 import { AbstractRepository, DeepPartial, EntityRepository, ILike } from 'typeorm';
 import { Player } from '../entities/player.entity';
 import { Follow } from '../entities/follow.entity';
+import { User } from '../entities/user.entity';
 
 class PlayerNotFoundError extends Error {
   name = 'ERR_PLAYER_NOT_FOUND';
@@ -21,6 +22,14 @@ export class PlayerRepository extends AbstractRepository<Player> {
 
   async findById(id: number): Promise<Player> {
     const player = await this.repository.findOne(id);
+    if (!player) throw new PlayerNotFoundError();
+    return player;
+  }
+
+  async findByUser(user: User): Promise<Player> {
+    const player = await this.repository.findOne({
+      where: { user }
+    })
     if (!player) throw new PlayerNotFoundError();
     return player;
   }
