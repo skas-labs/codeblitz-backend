@@ -1,4 +1,4 @@
-import { AbstractRepository, DeepPartial, EntityRepository, ILike } from 'typeorm';
+import { AbstractRepository, DeepPartial, EntityRepository, ILike, Repository } from 'typeorm';
 import { Player } from '../entities/player.entity';
 import { Follow } from '../entities/follow.entity';
 import { User } from '../entities/user.entity';
@@ -13,6 +13,9 @@ class PlayerFollowError extends Error {
 
 @EntityRepository(Player)
 export class PlayerRepository extends AbstractRepository<Player> {
+  get followRepo(): Repository<Follow> {
+    return this.repository.manager.getRepository(Follow)
+  }
 
 
   async createPlayer(player: DeepPartial<Player>): Promise<Player> {
@@ -54,10 +57,25 @@ export class PlayerRepository extends AbstractRepository<Player> {
     return players;
   }
 
-  async followPlayer(follower: Player, followee: Player): Promise<Follow> {
-    const followRepo = this.repository.manager.connection.getRepository(Follow)
+  async findFollowers(player: Player): Promise<Player[]> {
+    // TODO: add pagniation options in future
+    const follows = await this.followRepo.find({
+      where: { followee: player }
+    })
+    return follows.map( f => f.follower )
+  }
 
-    const existingFollow = await followRepo.findOne({
+  async findFollowing(player: Player): Promise<Player[]> {
+    // TODO: add pagniation options in future
+    const follows = await this.followRepo.find({
+      where: { follower: player }
+    })
+    return follows.map( f => f.followee )
+  }
+
+  async followPlayer(follower: Player, followee: Player): Promise<Follow> {
+
+    const existingFollow = await this.followRepo.findOne({
       where: { follower, followee }
     })
 
@@ -65,7 +83,7 @@ export class PlayerRepository extends AbstractRepository<Player> {
       `${follower.username} already follows ${followee.username}`
     )
 
-    const follow = await followRepo.save({followee, follower})
+    const follow = await this.followRepo.save({followee, follower})
 
     return follow;
 

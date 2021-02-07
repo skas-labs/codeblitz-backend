@@ -6,11 +6,11 @@ import { Player } from './player.entity';
 @Entity('follow')
 export class Follow extends _baseEntity {
 
-  @ManyToOne(() => Player, {primary: true})
+  @ManyToOne(() => Player, {primary: true, eager: true})
   follower!: Player;
 
 
-  @ManyToOne(() => Player, {primary: true})
+  @ManyToOne(() => Player, {primary: true, eager: true})
   followee!: Player;
 
 

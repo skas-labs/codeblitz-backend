@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Inject, Logger, Param, Put, Query, UseGuards } from '@nestjs/common';
+import { All, Controller, Delete, Get, Inject, Logger, Param, Put, Query, UseGuards } from '@nestjs/common';
 import { PlayersService } from '../../database/players/players.service';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { ApiBearerAuth, ApiPropertyOptional, ApiTags } from '@nestjs/swagger';
@@ -28,6 +28,19 @@ export class PlayersController {
   @Get('me')
   async findCurrentPlayer(@GetUser() user: User): Promise<Player> {
     return await this.players.findByUser(user);
+  }
+
+  @Get('me/followers')
+  async findMyFollowers(@GetUser() user: User): Promise<Player[]> {
+    const player = await this.players.findByUser(user);
+    return await this.players.findFollowers(player)
+  }
+
+  @Get('me/following')
+  async findMyFollowings(@GetUser() user: User): Promise<Player[]> {
+    const player = await this.players.findByUser(user);
+    return await this.players.findFollowing(player)
+
   }
 
   @Get(':id')

@@ -33,16 +33,22 @@ export class PlayersService {
     return await this.repo.findById(id);
   }
 
-  async findFollowers(id: number): Promise<Player[]> {
-    // const player = await this.repo.findById(id)
-    // return await player.followers
-    return [];
+  async findFollowers(player: Player): Promise<Player[]>
+  async findFollowers(playerId: number): Promise<Player[]>
+  async findFollowers(p: Player | number): Promise<Player[]> {
+    let player: Player
+    if (typeof p === 'number') player = await this.findById(p)
+    else player = p
+    return await this.repo.findFollowers(player)
   }
 
-  async findFollowing(id: number): Promise<Player[]> {
-    // const player = await this.repo.findById(id)
-    // return await player.following
-    return [];
+  async findFollowing(playerId: number): Promise<Player[]>
+  async findFollowing(player: Player): Promise<Player[]>
+  async findFollowing(p: Player | number): Promise<Player[]> {
+    let player: Player
+    if (typeof p === 'number') player = await this.findById(p)
+    else player = p
+    return await this.repo.findFollowing(player)
   }
 
 }
