@@ -59,6 +59,18 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
         }
     }
 
+- [ ] Abandoning Flow
+
+- [ ] Sample HTML app
+
+- [ ] Socket auth onConnect
+
+- [ ] Eager load questions in game engine
+
+- [ ] Serve questions from game-engine
+
+- [ ] Updating Stats in GameObject
+
 
  ## API
 

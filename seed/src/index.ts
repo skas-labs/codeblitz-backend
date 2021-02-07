@@ -3,6 +3,7 @@ import inquirer from 'inquirer'
 import { seedQuestions } from './data/questions.seed';
 import { seedUsers } from './data/users.seed';
 import { seedPlayers } from './data/players.seed';
+import { seedMatchRequests } from './data/matchRequests.seed';
 
 async function seedData() {
   const { force }  = await inquirer.prompt<{force: boolean}>({
@@ -13,6 +14,7 @@ async function seedData() {
   await seedQuestions(db.repositories.question)
   await seedUsers(db.repositories.user)
   await seedPlayers(db.repositories.player, db.repositories.user)
+  await seedMatchRequests(db.repositories.matchRequest, db.repositories.player)
 }
 
 seedData()
