@@ -6,9 +6,9 @@ export async function seedMatchRequests(repo: MatchRequestRepository, playerRepo
   const player1 = await playerRepo.findByUsername('championswimmer');
   const player2 = await playerRepo.findByUsername('testplayerb');
 
-  const matchRequests = await Promise.all([
-    repo.createRequest(player1[0]),
-    repo.createRequest(player2[0])
+  const matchRequests = ([
+    await repo.createRequest(player1[0]),
+    await repo.createRequest(player2[0])
   ])
 
   for (const q of matchRequests) {

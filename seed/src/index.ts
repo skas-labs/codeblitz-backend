@@ -1,34 +1,37 @@
 import { connect } from '@codeblitz/data';
-import inquirer from 'inquirer'
+import inquirer from 'inquirer';
 import { seedQuestions } from './data/questions.seed';
 import { seedUsers } from './data/users.seed';
 import { seedPlayers } from './data/players.seed';
 import { seedMatchRequests } from './data/matchRequests.seed';
 import { seedAuth } from './data/auth.seed';
 
+async function q(seed: string, seedFn: () => Promise<void>) {
+  await inquirer.prompt<{ [x: string]: boolean }>({
+    type: 'confirm', name: seed, message: `Seed ${ seed } ?`
+  }).then(async (ans) => {
+      if (ans[seed]) return await seedFn();
+    }
+  );
+}
+
 async function seedData() {
-  const { force }  = await inquirer.prompt<{force: boolean}>({
+  const {force} = await inquirer.prompt<{ force: boolean }>({
     type: 'confirm', name: 'force', message: 'Drop Database?'
-  })
-  const db = await connect('seed', force)
+  });
+  const db = await connect('seed', force);
 
-  const { q } = await inquirer.prompt<{q: boolean}>([ {type: 'confirm', name: 'q', message: 'Seed Questions?'}])
-  if (q) await seedQuestions(db.repositories.question)
+  await q('Questions', () => seedQuestions(db.repositories.question));
+  await q('Users', () => seedUsers(db.repositories.user));
+  await q('Players', () => seedPlayers(db.repositories.player, db.repositories.user));
+  await q(
+    'Match Requests',
+    () => seedMatchRequests(db.repositories.matchRequest, db.repositories.player)
+  );
+  await q('Auth', () => seedAuth(db.repositories.auth, db.repositories.user));
 
-  const { u } = await inquirer.prompt<{u: boolean}>([ {type: 'confirm', name: 'u', message: 'Seed Users?'}])
-  if (u) await seedUsers(db.repositories.user)
-
-  const { p } = await inquirer.prompt<{p: boolean}>([ {type: 'confirm', name: 'p', message: 'Seed Players?'}])
-  if (p) await seedPlayers(db.repositories.player, db.repositories.user)
-
-  const { mr } = await inquirer.prompt<{mr: boolean}>([ {type: 'confirm', name: 'mr', message: 'Seed Match Requests?'}])
-  if (mr) await seedMatchRequests(db.repositories.matchRequest, db.repositories.player)
-
-  const { a } = await inquirer.prompt<{a: boolean}>([ {type: 'confirm', name: 'a', message: 'Seed Auth Tokens?'}])
-  if (a) await seedAuth(db.repositories.auth, db.repositories.user)
-
-  await db.connection.close()
+  await db.connection.close();
 
 }
 
-seedData()
+seedData();

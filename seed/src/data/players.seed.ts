@@ -4,10 +4,10 @@ import { Player } from '@codeblitz/data/dist/entities/player.entity';
 
 /** @internal */
 export async function seedPlayers(repo: PlayerRepository, userRepo: UserRepository) {
-  const players = await Promise.all([
-    createPlayer(repo, userRepo, '+918800233266', 'championswimmer', 'Arnav Gupta'),
-    createPlayer(repo, userRepo, '+918888877777', 'testplayerb', 'Test PlayerB'),
-    createPlayer(repo, userRepo, '+919999955555', 'testplayerc', 'Test PlayerC'),
+  const players = ([
+    await createPlayer(repo, userRepo, '+918800233266', 'championswimmer', 'Arnav Gupta'),
+    await createPlayer(repo, userRepo, '+918888877777', 'testplayerb', 'Test PlayerB'),
+    await createPlayer(repo, userRepo, '+919999955555', 'testplayerc', 'Test PlayerC'),
   ]);
 
   await repo.followPlayer(players[0], players[1]);
