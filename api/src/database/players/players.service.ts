@@ -29,8 +29,8 @@ export class PlayersService {
     return await this.repo.findByUser(user)
   }
 
-  async findById(id: number): Promise<Player> {
-    return await this.repo.findById(id);
+  async findById(playerId: number): Promise<Player> {
+    return await this.repo.findById(playerId);
   }
 
   async findFollowers(player: Player): Promise<Player[]>
