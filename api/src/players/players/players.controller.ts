@@ -1,15 +1,20 @@
-import { Controller, Delete, Get, Inject, Param, Put, Query } from '@nestjs/common';
+import { All, Controller, Delete, Get, Inject, Logger, Param, Put, Query, UseGuards } from '@nestjs/common';
 import { PlayersService } from '../../database/players/players.service';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
-import { ApiPropertyOptional, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiPropertyOptional, ApiTags } from '@nestjs/swagger';
+import { LoginGuard } from '../../auth/guards/login.guard';
+import { GetUser } from '../../auth/decorators/getuser.decorator';
+import { User } from '@codeblitz/data/dist/entities/user.entity';
 
 class FindAllQueryParams {
   @ApiPropertyOptional() username?: string;
   @ApiPropertyOptional() name?: string;
 }
 
+@ApiBearerAuth()
 @ApiTags('players')
-@Controller()
+@Controller('players')
+@UseGuards(LoginGuard)
 export class PlayersController {
   @Inject() private readonly players!: PlayersService;
 
@@ -21,8 +26,21 @@ export class PlayersController {
   }
 
   @Get('me')
-  async findCurrentPlayer(): Promise<Player> {
-    return new Player() //TODO: req.user
+  async findCurrentPlayer(@GetUser() user: User): Promise<Player> {
+    return await this.players.findByUser(user);
+  }
+
+  @Get('me/followers')
+  async findMyFollowers(@GetUser() user: User): Promise<Player[]> {
+    const player = await this.players.findByUser(user);
+    return await this.players.findFollowers(player)
+  }
+
+  @Get('me/following')
+  async findMyFollowings(@GetUser() user: User): Promise<Player[]> {
+    const player = await this.players.findByUser(user);
+    return await this.players.findFollowing(player)
+
   }
 
   @Get(':id')
@@ -32,21 +50,21 @@ export class PlayersController {
 
   @Get(':id/followers')
   async findFollowersOf(@Param('id') playerId: number): Promise<Player[]> {
-    return await this.players.findFollowers(playerId)
+    return await this.players.findFollowers(playerId);
   }
 
   @Get(':id/following')
   async findFollowedBy(@Param('id') playerId: number): Promise<Player[]> {
-    return await this.players.findFollowing(playerId)
+    return await this.players.findFollowing(playerId);
   }
 
   @Put(':id/follow')
   async followPlayer(@Param('id') playerId: number): Promise<boolean> {
-    return true // TODO
+    return true; // TODO
   }
 
   @Delete(':id/follow')
   async unfollowPlayer(@Param('id') playerId: number): Promise<boolean> {
-    return true // TODO
+    return true; // TODO
   }
 }

@@ -11,7 +11,6 @@ class OtpSendBody {
 
 }
 
-@ApiResponse({})
 class OtpSendResponse extends OtpSendBody {
 
   @ApiProperty({required: true, example: '1ee7cb89-7465-4872-914f-783a06911927'})
@@ -32,7 +31,6 @@ class OtpVerifyBody extends OtpSendResponse {
   otp!: string;
 }
 
-@ApiResponse({})
 class OtpVerifyResponse {
   @ApiResponseProperty()
   accessToken!: string;
@@ -63,6 +61,7 @@ export class OtpController {
     );
   }
 
+  @ApiResponse({type: OtpVerifyResponse})
   @Post('/verify')
   async verifyOtp(@Body() otpVerify: OtpVerifyBody): Promise<OtpVerifyResponse> {
     Logger.debug(JSON.stringify(otpVerify), 'OTP_VERIFY');

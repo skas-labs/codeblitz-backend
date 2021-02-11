@@ -1,5 +1,4 @@
-import { connect } from '@codeblitz/data';
-import { QuestionRepository } from '@codeblitz/data/dist/repositories/question.repository';
+import DatabaseService from '~/services/database';
 import GamePlayer from '~/game/GamePlayer';
 import GameSession from '~/game/GameSession';
 
@@ -7,7 +6,7 @@ export default class MatchMaker {
   private waitingQueue: Array<GamePlayer>;
 
   constructor() {
-    // noop
+    this.waitingQueue = [];
   }
 
   async queuePlayer(player: GamePlayer): Promise<void> {
@@ -23,10 +22,10 @@ export default class MatchMaker {
 
   async startSession(player1: GamePlayer, player2: GamePlayer): Promise<GameSession> {
     const session = new GameSession(player1, player2);
-    const db = await connect('matchmaker')
 
-    // FIXME: double await
-    const questions = await db.repositories.question.findAll();
+    const questions = await DatabaseService.repos.question.findAll({
+      take: 5
+    });
     session.start(questions);
 
     return session;

@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     // router
-    RouterModule.forRoutes(appRouter),
+    // RouterModule.forRoutes(appRouter),
     // apis
     PlayersModule, GameModule, QuestionsModule,
     //auth

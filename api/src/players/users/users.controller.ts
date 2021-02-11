@@ -1,10 +1,12 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { Controller, Get, Inject, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from '../../database/users/users.service';
 import { User } from '@codeblitz/data/dist/entities/user.entity';
+import { LoginGuard } from '../../auth/guards/login.guard';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('players', 'users')
+@ApiTags('users')
 @Controller('users')
+@UseGuards(LoginGuard)
 export class UsersController {
   @Inject() private readonly users!: UsersService
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix '{api,data,game-engine,sidekick}/{src,test}/*.{js,ts}'",
-    "format": "prettier --write '{api,data,game-engine,sidekick}/src/**/*.{js,ts}'",
+    "format": "prettier --write '{api,data,game-engine,sidekick}/{src,test}/**/*.{js,ts}'",
     "build:data": "cd data && npm run build",
     "build:api": "cd api && npm run build",
     "build:game-engine": "cd game-engine && npm run build",
@@ -23,11 +23,15 @@
     "install:sidekick": "cd sidekick && npm install",
     "install:seed": "cd seed && npm install",
     "postinstall": "run-p install:*",
+    "preseed": "npm run build:data",
     "seed": "cd seed && npm run start",
     "test:api": "cd api && npm run test",
     "test:data": "cd data && npm run test",
     "test:game-engine": "cd game-engine && npm run test",
-    "test": "run-p test:*"
+    "test": "run-p test:*",
+    "start:api:prod": "cd api && npm run start:prod",
+    "prestart:prod": "npm run build",
+    "start:prod": "run-p start:*:*"
   },
   "author": "",
   "license": "ISC",
@@ -50,5 +54,9 @@
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
+  },
+  "engines": {
+    "node": ">= 14",
+    "npm": ">= 6"
   }
 }

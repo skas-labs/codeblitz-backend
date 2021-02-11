@@ -11,8 +11,8 @@ export class OTP extends _baseEntity {
   @Column()
   phno: string;
 
-  @Column({length: 4})
-  @Length(4, 4)
+  @Column({length: 6})
+  @Length(6, 6)
   @IsNumberString()
   otp: string;
 }

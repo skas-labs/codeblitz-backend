@@ -3,6 +3,7 @@ import { Question } from '@codeblitz/data/dist/entities/question.entity';
 import Answers = Question.Answers;
 import Options = Question.Options;
 
+/** @internal */
 export async function seedQuestions(repo: QuestionRepository) {
   const questions: Array<Partial<Question>> = [
     {

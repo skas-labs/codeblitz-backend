@@ -2,6 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Database } from '../database.provider';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { PlayerRepository } from '@codeblitz/data/dist/repositories/player.repository';
+import { Lazy } from '../../utils/lazy.decorator';
+import { User } from '@codeblitz/data/dist/entities/user.entity';
 
 interface SearchOptions {
   username?: string
@@ -12,32 +14,41 @@ interface SearchOptions {
 export class PlayersService {
   @Inject() private readonly database!: Database;
 
-  #repo?: PlayerRepository;
-  get repo() {
-    if (this.#repo == null) this.#repo = this.database.repos.player;
-    return this.#repo;
-  }
+  @Lazy<PlayersService>(c => c.database.repos.player)
+  private repo!: PlayerRepository;
 
   async search(searchOptions: SearchOptions): Promise<Player[]> {
-    if (searchOptions.username) return this.repo.findByUsername(searchOptions.username)
-    if (searchOptions.name) return this.repo.findByName(searchOptions.name)
+    if (searchOptions.username) return this.repo.findByUsername(searchOptions.username);
+    if (searchOptions.name) return this.repo.findByName(searchOptions.name);
 
     // if no options, find all players
-    return this.repo.findAll()
+    return this.repo.findAll();
   }
 
-  async findById(id: number): Promise<Player> {
-    return await this.repo.findById(id);
+  async findByUser(user: User): Promise<Player> {
+    return await this.repo.findByUser(user)
   }
 
-  async findFollowers(id: number): Promise<Player[]> {
-    const player = await this.repo.findById(id)
-    return await player.followers
+  async findById(playerId: number): Promise<Player> {
+    return await this.repo.findById(playerId);
   }
 
-  async findFollowing(id: number): Promise<Player[]> {
-    const player = await this.repo.findById(id)
-    return await player.following
+  async findFollowers(player: Player): Promise<Player[]>
+  async findFollowers(playerId: number): Promise<Player[]>
+  async findFollowers(p: Player | number): Promise<Player[]> {
+    let player: Player
+    if (typeof p === 'number') player = await this.findById(p)
+    else player = p
+    return await this.repo.findFollowers(player)
+  }
+
+  async findFollowing(playerId: number): Promise<Player[]>
+  async findFollowing(player: Player): Promise<Player[]>
+  async findFollowing(p: Player | number): Promise<Player[]> {
+    let player: Player
+    if (typeof p === 'number') player = await this.findById(p)
+    else player = p
+    return await this.repo.findFollowing(player)
   }
 
 }

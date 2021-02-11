@@ -2,15 +2,21 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Database } from '../database.provider';
 import { User } from '@codeblitz/data/dist/entities/user.entity';
 import { UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
+import { Lazy } from '../../utils/lazy.decorator';
+import { AuthtokenRepository } from '@codeblitz/data/dist/repositories/authtoken.repository';
 
 @Injectable()
 export class UsersService {
   @Inject() private readonly database!: Database;
 
-  #repo?: UserRepository;
-  get repo(): UserRepository {
-    if (this.#repo == null) this.#repo = this.database.repos.user;
-    return this.#repo;
+  @Lazy<UsersService>(c => c.database.repos.user)
+  private repo!: UserRepository;
+
+  @Lazy<UsersService>(c => c.database.repos.auth)
+  private authRepo!: AuthtokenRepository;
+
+  async findByAuthToken(token: string): Promise<User> {
+    return await this.authRepo.validateToken(token);
   }
 
   async findById(id: number): Promise<User> {
@@ -22,10 +28,10 @@ export class UsersService {
   }
 
   async findOrCreate(number: string): Promise<[ User, boolean ]> {
-    const user = await this.repo.findByNumber(number);
+    const user = await this.repo.findByPhNo(number);
     if (user != null)
       return [ user, false ];
-    else return [ await this.repo.create({phoneNumber: number}), true ];
+    else return [ await this.repo.createUser({emailid: '', phno: number}), true ];
   }
 
 }

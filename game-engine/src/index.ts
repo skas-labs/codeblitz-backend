@@ -1,12 +1,13 @@
 import 'module-alias/register';
-import app from '~/app';
 
+import app from '~/app';
 import { createSocketIoServer } from '~/socket';
+import DatabaseService from '~/services/database';
 import { createServer as createHttpServer } from 'http';
-import { connect } from '@codeblitz/data';
 
 (async () => {
-  await connect('game-engine');
+  await DatabaseService.initialize();
+
   const httpServer = createHttpServer(app);
   const socketioServer = createSocketIoServer(httpServer);
 
