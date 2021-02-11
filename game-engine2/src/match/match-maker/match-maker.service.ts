@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from 'socket.io';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { GamePlayer } from '../../data/game-player.entity';
+import { Player } from '@codeblitz/data/dist/entities/player.entity';
 
 enum MatchState {
   JOINING,
@@ -10,12 +10,12 @@ enum MatchState {
   STARTING
 }
 export class QueuedGamePlayer {
-  gamePlayer: GamePlayer
+  player: Player
   state: MatchState
   gameId?: string
 
-  constructor(gamePlayer: GamePlayer, state: MatchState = MatchState.JOINING) {
-    this.gamePlayer = gamePlayer;
+  constructor(player: Player, state: MatchState = MatchState.JOINING) {
+    this.player = player;
     this.state = state;
   }
 
@@ -32,12 +32,13 @@ export class MatchMakerService {
 
   private waitingQueue: Array<BehaviorSubject<QueuedGamePlayer>> = []
 
-  queuePlayer(gamePlayer: GamePlayer): Observable<QueuedGamePlayer> {
+  queuePlayer(player: Player): Observable<QueuedGamePlayer> {
 
-    const newQueuedPlayer = new BehaviorSubject(new QueuedGamePlayer(gamePlayer))
+    const newQueuedPlayer = new BehaviorSubject(new QueuedGamePlayer(player))
     this.waitingQueue.push(newQueuedPlayer)
     newQueuedPlayer.next(newQueuedPlayer.value.updateState(MatchState.QUEUED))
-    this.handleNewQueuePlayer() // side effect
+    // noinspection JSIgnoredPromiseFromCall
+    this.handleNewQueuePlayer()
 
     return newQueuedPlayer
 
