@@ -21,4 +21,11 @@ export class UsersService {
     return await this.repo.findAll();
   }
 
+  async findOrCreate(number: string): Promise<[ User, boolean ]> {
+    const user = await this.repo.findByNumber(number);
+    if (user != null)
+      return [ user, false ];
+    else return [ await this.repo.create({phoneNumber: number}), true ];
+  }
+
 }

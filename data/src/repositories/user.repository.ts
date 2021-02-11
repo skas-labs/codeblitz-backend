@@ -14,8 +14,22 @@ export class UserRepository extends AbstractRepository<User> {
     return user;
   }
 
+  async create(user: object): Promise<User> {
+    return await this.repository.save(user);
+  }
+
+  async findByNumber(number: string): Promise<User> {
+    const user = await this.repository.findOne({
+      where: {
+        phoneNumber: number
+      }
+    });
+    if (!user) throw new UserNotFoundError();
+    return user;
+  }
+
   async findAll(): Promise<User[]> {
     // TODO: handle pagination
-    return await this.repository.find()
+    return await this.repository.find();
   }
 }
