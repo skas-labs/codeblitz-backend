@@ -27,4 +27,9 @@ export class GameSessionService {
 
   }
 
+  pingGame(player: Player, gameId: string): void {
+    const gameSession = this.games.get(gameId)!
+    gameSession.ping()
+  }
+
 }

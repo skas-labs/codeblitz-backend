@@ -18,6 +18,10 @@ export class GameSession {
     this.gameUpdates.next(new PlayerJoinedUpdate(this.gameId, player))
   }
 
+  ping() {
+    this.gameUpdates.next(new GameEventUpdate(this.gameId, 'PING'))
+  }
+
 
   constructor(gameId: string) {
     this.gameId = gameId;
@@ -45,5 +49,16 @@ class PlayerJoinedUpdate extends GameUpdates {
     super();
     this.gameId = gameId;
     this.player = player;
+  }
+}
+
+class GameEventUpdate extends GameUpdates {
+  gameId: string;
+  event: string;
+
+  constructor(gameId: string, event: string) {
+    super();
+    this.gameId = gameId;
+    this.event = event;
   }
 }
