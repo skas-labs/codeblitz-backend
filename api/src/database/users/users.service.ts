@@ -30,7 +30,10 @@ export class UsersService {
   async findOrCreate(number: string): Promise<[ User, boolean ]> {
     const user = await this.repo.findByPhNo(number);
     if (user != null)
-      return [ user, false ];
+      if (user.email == null || user.player == null)
+        return [ user, true ];
+      else
+        return [ user, false ];
     else return [ await this.repo.createUser({emailid: '', phno: number}), true ];
   }
 
