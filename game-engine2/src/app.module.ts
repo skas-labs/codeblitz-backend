@@ -8,8 +8,7 @@ import path from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: path.join(__dirname, '../public'),
-      renderPath: '/socket'
+      rootPath: path.join(__dirname, "../public"),
     }),
     GameModule,
     MatchModule

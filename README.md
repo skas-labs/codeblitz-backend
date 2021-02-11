@@ -104,7 +104,7 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 
 - [x] `GET /players/:id`
 
-- [ ] `GET /players/:id/followers` ⚠️
+- [x] `GET /players/:id/followers` ⚠️
 
     - [ ] `GET /players/:id/followers/?username=xxxx` ⚠️
 
@@ -129,7 +129,7 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 
 - [ ] `GET /leaderboard?city=XXX`
 
-- [ ] `POST /match` (create match request)
+- [x] `POST /match` (create match request)
 
 - [ ] `GET /match/:id` (status of request, maybe not needed)
 
