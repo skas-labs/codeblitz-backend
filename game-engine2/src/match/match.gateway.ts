@@ -6,33 +6,30 @@ import {
   WebSocketServer,
   WsResponse
 } from '@nestjs/websockets';
-import { from, interval, Observable, zip } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Server, Socket } from 'socket.io';
+import { Inject, Logger } from '@nestjs/common';
+import { MatchMakerService, QueuedGamePlayer } from './match-maker/match-maker.service';
+import { GamePlayer } from '../data/game-player.entity';
 
 @WebSocketGateway({namespace: '/match'})
 export class MatchGateway {
+  @Inject() matchMaker!: MatchMakerService;
+
   @WebSocketServer()
   server!: Server;
 
-  @SubscribeMessage('message')
+  @SubscribeMessage('request')
   handleMessage(
     @MessageBody() data: string,
     @ConnectedSocket() client: Socket,
-  ): Promise<string> {
+  ): Observable<WsResponse<QueuedGamePlayer>> {
 
-    return new Promise<string>((resolve, reject) => {
-      setTimeout(() => resolve('Hello World'), 2000)
-    });
+    const newMatchRequest = this.matchMaker.queuePlayer({} as GamePlayer);
+
+    return newMatchRequest.pipe(map(queuePlayer => ({event: 'update', data: queuePlayer})));
+
   }
 
-  @SubscribeMessage('events')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-
-    return zip(
-      from([1,2,3,4,5]),
-      interval(2000),
-      item => ({ event: 'events', data: item })
-    )
-  }
 }
