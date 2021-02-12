@@ -13,32 +13,38 @@ export class GameGateway {
   @Inject() gameService!: GameSessionService;
 
   @SubscribeMessage('join')
-  handleJoin(
+  async handleJoin(
     @MessageBody() data: string,
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
-  ): Observable<WsResponse<GameUpdates>> {
+  ): Promise<Observable<WsResponse<GameUpdates>>> {
 
     const player = {} as Player; // TODO
-    const gameUpdates = this.gameService.joinGame(player, gameId);
+    const gameUpdates = await this.gameService.joinGame(player, gameId);
 
-    return gameUpdates.pipe(map(updates => ({event: 'updates', data: updates})));
-
+    return gameUpdates.pipe(map(updates => ({event: updates.event, data: updates})));
   }
 
-  @SubscribeMessage('fuck')
-  handlePing(
+  @SubscribeMessage('start')
+  handleStart(
     @MessageBody() data: string,
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
-  ): string {
-
-    const player = {} as Player; // TODO
-    const gameUpdates = this.gameService.pingGame(player, gameId);
-
-    return `PINGED ${gameId}`;
-
+  ): void {
+    
+    const player = {} as Player // TODO
+    this.gameService.startGame(player, gameId);
   }
 
+  @SubscribeMessage('select_answer')
+  handleSelectAnswer(
+    @MessageBody() data: string,
+    @ConnectedSocket() socket: Socket,
+    @GameId() gameId: string
+  ): void {
+    const player = {} as Player // TODO
 
+    // fetch questionId and answerId from body
+    this.gameService.selectAnswer(player, gameId, 1, 1);
+  }
 }

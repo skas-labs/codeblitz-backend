@@ -4,6 +4,8 @@ import { GameModule } from './game/game.module';
 import { MatchModule } from './match/match.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import path from 'path';
+import { DatabaseModule } from './database/database.module';
+import { databaseProvider } from './database/database.provider';
 
 @Module({
   imports: [
@@ -11,8 +13,9 @@ import path from 'path';
       rootPath: path.join(__dirname, "../public"),
     }),
     GameModule,
-    MatchModule
+    MatchModule,
+    DatabaseModule
   ],
-  providers: [AppService],
+  providers: [AppService, databaseProvider],
 })
 export class AppModule {}
