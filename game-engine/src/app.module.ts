@@ -6,6 +6,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import path from 'path';
 import { DatabaseModule } from './database/database.module';
 import { databaseProvider } from './database/database.provider';
+import { CombinedGateway } from './combined/combined.gateway';
+import { CombinedModule } from './combined/combined.module';
 
 @Module({
   imports: [
@@ -14,8 +16,9 @@ import { databaseProvider } from './database/database.provider';
     }),
     GameModule,
     MatchModule,
-    DatabaseModule
+    DatabaseModule,
+    CombinedModule
   ],
-  providers: [AppService, databaseProvider],
+  providers: [AppService, databaseProvider, CombinedGateway],
 })
 export class AppModule {}

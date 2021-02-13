@@ -1,5 +1,5 @@
 
-let g = io('/game', { transport:'websocket', query: { transport: 'websocket', 'X-Game-Id': 'db264843-a8cd-4b04-ae4a-3e8754c3272e' }})
+let g = io('/', { transport:'websocket', query: { transport: 'websocket', 'X-Game-Id': 'db264843-a8cd-4b04-ae4a-3e8754c3272e' }})
 g.on('init', console.log)
 g.on('player_joined', console.log)
 g.on('question_result', console.log)
