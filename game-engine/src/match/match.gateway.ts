@@ -1,6 +1,6 @@
 import {
   ConnectedSocket,
-  MessageBody, OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit,
+  MessageBody,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
@@ -9,12 +9,13 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Server, Socket } from 'socket.io';
-import { Inject, Logger } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import { MatchMakerService, QueuedGamePlayer } from './match-maker/match-maker.service';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
+import { _baseGateway } from '../common/_base.gateway';
 
 @WebSocketGateway({namespace: '/match'})
-export class MatchGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
+export class MatchGateway extends _baseGateway {
   @Inject() matchMaker!: MatchMakerService;
 
   @WebSocketServer()
@@ -32,19 +33,6 @@ export class MatchGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
 
     return newMatchRequest.pipe(map(queuePlayer => ({event: 'update', data: queuePlayer})));
 
-  }
-
-  afterInit(server: Server): void {
-    Logger.debug(server, 'SERVER_INIT')
-  }
-
-  handleConnection(client: Socket, ...args: []): void {
-    Logger.debug(client, 'CONNECTION')
-    Logger.debug(args, 'CONNECTION_ARGS')
-  }
-
-  handleDisconnect(client: Socket): void {
-    Logger.debug(client, 'DISCONNECT')
   }
 
 }
