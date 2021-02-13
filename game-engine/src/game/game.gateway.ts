@@ -1,5 +1,5 @@
 import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
-import { Inject } from '@nestjs/common';
+import { Inject, Logger } from '@nestjs/common';
 import { GameSessionService } from './game-session/game-session.service';
 import { Socket } from 'socket.io';
 import { Observable } from 'rxjs';
@@ -19,6 +19,8 @@ export class GameGateway extends _baseGateway {
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
   ): Promise<Observable<WsResponse<GameUpdates>>> {
+
+    Logger.debug({data, gameId}, 'EVENT_JOIN')
 
     const player = {} as Player; // TODO
     const gameUpdates = await this.gameService.joinGame(player, gameId);
