@@ -17,9 +17,6 @@ import { Player } from '@codeblitz/data/dist/entities/player.entity';
 export class MatchGateway {
   @Inject() matchMaker!: MatchMakerService;
 
-  @WebSocketServer()
-  server!: Server;
-
   @SubscribeMessage('request')
   handleMessage(
     @MessageBody() data: string, @ConnectedSocket() socket: Socket,

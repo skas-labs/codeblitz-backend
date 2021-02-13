@@ -1,5 +1,5 @@
 import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
-import { Inject } from '@nestjs/common';
+import { Inject, Logger } from '@nestjs/common';
 import { GameSessionService } from './game-session/game-session.service';
 import { Socket } from 'socket.io';
 import { Observable } from 'rxjs';
@@ -7,9 +7,10 @@ import { GameUpdates } from './game-session/game-session.entity';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 import { map } from 'rxjs/operators';
 import { GameId } from './game-id.decorator';
+import { _baseGateway } from '../common/_base.gateway';
 
 @WebSocketGateway({namespace: '/game'})
-export class GameGateway {
+export class GameGateway extends _baseGateway {
   @Inject() gameService!: GameSessionService;
 
   @SubscribeMessage('join')
@@ -18,6 +19,8 @@ export class GameGateway {
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
   ): Promise<Observable<WsResponse<GameUpdates>>> {
+
+    Logger.debug({data, gameId}, 'EVENT_JOIN')
 
     const player = {} as Player; // TODO
     const gameUpdates = await this.gameService.joinGame(player, gameId);
@@ -31,8 +34,8 @@ export class GameGateway {
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
   ): void {
-    
-    const player = {} as Player // TODO
+
+    const player = {} as Player; // TODO
     this.gameService.startGame(player, gameId);
   }
 
@@ -42,9 +45,10 @@ export class GameGateway {
     @ConnectedSocket() socket: Socket,
     @GameId() gameId: string
   ): void {
-    const player = {} as Player // TODO
+    const player = {} as Player; // TODO
 
     // fetch questionId and answerId from body
     this.gameService.selectAnswer(player, gameId, 1, 1);
   }
+
 }
