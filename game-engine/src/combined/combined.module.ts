@@ -1,8 +1,14 @@
 import { Module } from '@nestjs/common';
-import { GameSessionService } from 'src/game/game-session/game-session.service';
-import { MatchMakerService } from 'src/match/match-maker/match-maker.service';
+import { GameHandler } from './game.handler';
+import { MatchHandler } from './match.handler';
+import { GameModule } from '../game/game.module';
+import { MatchModule } from '../match/match.module';
+import { CombinedGateway } from './combined.gateway';
 
 @Module({
-  providers: [ MatchMakerService, GameSessionService ]
+  imports: [ GameModule, MatchModule ],
+  providers: [ CombinedGateway, GameHandler, MatchHandler ],
+  exports: [ GameHandler, MatchHandler ]
 })
-export class CombinedModule {}
+export class CombinedModule {
+}

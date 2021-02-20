@@ -8,17 +8,19 @@ import { DatabaseModule } from './database/database.module';
 import { databaseProvider } from './database/database.provider';
 import { CombinedGateway } from './combined/combined.gateway';
 import { CombinedModule } from './combined/combined.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, "../public"),
     }),
-    GameModule,
-    MatchModule,
+    // GameModule,
+    // MatchModule,
     DatabaseModule,
-    CombinedModule
+    CombinedModule,
+    AuthModule
   ],
-  providers: [AppService, databaseProvider, CombinedGateway],
+  providers: [AppService, databaseProvider],
 })
 export class AppModule {}

@@ -1,10 +1,13 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { Client, Socket } from 'socket.io';
+
+interface GameEvent {
+  game_id: string
+}
 
 export const GameId = createParamDecorator(
   (data, context: ExecutionContext): string => {
-    const client = context.switchToWs().getClient() as Socket
-    const gameId = client.handshake.query['X-Game-Id']
-    return gameId
+    const eventData = context.switchToWs().getData() as GameEvent;
+    const gameId = eventData.game_id;
+    return gameId;
   }
 );
