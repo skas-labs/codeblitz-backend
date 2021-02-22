@@ -51,6 +51,7 @@ export class OtpController {
   @Post('/')
   async requestOtp(@Body() reqOtp: OtpSendBody): Promise<OtpSendResponse> {
     Logger.debug(JSON.stringify(reqOtp), 'OTP_SEND');
+
     return new OtpSendResponse(
       reqOtp.phno,
       uuid4().toString()

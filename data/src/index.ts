@@ -10,13 +10,15 @@ import { MatchRequest } from './entities/match.entity';
 import { MatchRequestRepository } from './repositories/matchRequest.repository';
 import { AuthtokenRepository } from './repositories/authtoken.repository';
 import { AuthToken } from './entities/authtoken.entity';
+import { OTP } from './entities/otp.entity';
+import { OtpRepository } from './repositories/otp.repository';
 
-export const Entities = {
-  User,
-  Player,
-  Question,
-  MatchRequest,
-};
+export const Entities = [
+  User, Player,
+  Follow, Question,
+  MatchRequest, AuthToken,
+  OTP
+];
 
 export class DataStore {
   connection: Connection;
@@ -38,6 +40,7 @@ export class Repositories {
   get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
   get matchRequest(): MatchRequestRepository { return this.connection.getCustomRepository(MatchRequestRepository); }
   get auth(): AuthtokenRepository { return this.connection.getCustomRepository(AuthtokenRepository); }
+  get otp(): OtpRepository { return this.connection.getCustomRepository(OtpRepository)}
 
   static getInstance(name: string): Repositories {
     return new Repositories(name)
@@ -52,12 +55,13 @@ export async function connect(name = 'default', force = false): Promise<DataStor
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken ],
+    entities: Entities,
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
     dropSchema: force,
   });
+
   const repositories = Repositories.getInstance(name);
   return new DataStore(connection, repositories);
 }

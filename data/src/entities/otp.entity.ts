@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { _baseEntity } from './_base.entity';
-import { IsNumberString, Length } from 'class-validator';
+import { IsNumberString, Length, IsDate } from 'class-validator';
 
 @Entity('otps')
 export class OTP extends _baseEntity {
@@ -9,10 +9,19 @@ export class OTP extends _baseEntity {
   nonce: string;
 
   @Column()
+  @IsNumberString()
   phno: string;
 
   @Column({length: 6})
   @Length(6, 6)
   @IsNumberString()
   otp: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @Column()
+  @IsDate()
+  verified_at: Date;
+
 }

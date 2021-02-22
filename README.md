@@ -148,3 +148,7 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 - [ ] `DELETE /questions`
 
 
+## FAQ
+1. Seeds cannot run: uuid_generate_v4() does not exists
+
+    `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`
