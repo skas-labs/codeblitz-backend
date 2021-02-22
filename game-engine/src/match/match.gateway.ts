@@ -13,6 +13,11 @@ import { Inject } from '@nestjs/common';
 import { MatchMakerService, QueuedGamePlayer } from './match-maker/match-maker.service';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
 
+/**
+ * DO NOT USE THIS ONE FOR NOW
+ */
+
+
 @WebSocketGateway({namespace: '/match'})
 export class MatchGateway {
   @Inject() matchMaker!: MatchMakerService;

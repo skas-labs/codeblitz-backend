@@ -9,6 +9,10 @@ import { map } from 'rxjs/operators';
 import { GameId } from './game-id.decorator';
 import { _baseGateway } from '../common/_base.gateway';
 
+/**
+ * DO NOT USE THIS ONE FOR NOW
+ */
+
 @WebSocketGateway({namespace: '/game'})
 export class GameGateway extends _baseGateway {
   @Inject() gameService!: GameSessionService;

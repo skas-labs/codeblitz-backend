@@ -4,7 +4,6 @@ import { User } from '@codeblitz/data/dist/entities/user.entity';
 
 export const GetUser = createParamDecorator(
   (data, context: ExecutionContext): User => {
-    context.switchToWs().getData()
     const request = context.switchToHttp().getRequest()
     return request.user
   }

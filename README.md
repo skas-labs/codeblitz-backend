@@ -41,6 +41,55 @@ Run `npm run build` on the root to recursively build all projects internally
 
 ### Game Engine
 
+#### Events
+
+##### Match
+**events** (client -> server)
+- `match/request`
+
+
+**updates** (server -> client)
+- `match/status`
+  - payload: status = queued, other player joining, initialising game
+
+##### Game
+**events** (client -> server)
+- `game/join`
+
+- `game/select_answer`
+  - ques id, answer, time delta
+
+- `game/abandon`
+
+**updates** (server -> client)
+- `game/init`
+  - timings
+  - player details (you, opponent)
+
+- `game/round_ready`
+  - round id (0 to 10)
+  - score
+
+- `game/round_start`
+  - round id (0 to 10)
+  - question object (without answer)
+  - timer
+  - score
+
+- `game/round_result`
+  - round id (0 to 10)
+  - question object (without answer)
+  - timer
+  - player <-> ans map
+  - correct ans
+  - score
+
+- `game/end`
+  - score
+
+- `game/error`
+  - generic server side errors
+
 1. MatchMaker
 
 2. Game
@@ -131,20 +180,20 @@ https://excalidraw.com/#room=69695adf82651d920011,wCa1-1Pk4u5TAVAEvHAAsA
 
 - [x] `POST /match` (create match request)
 
-- [ ] `GET /match/:id` (status of request, maybe not needed)
+- [ ] `GET /match/:id` (status of request, maybe not needed) 🛑
 
-- [ ] `GET /games/:id`  (stats of that match)
+- [ ] `GET /games/:id`  (stats of that match) 🛑
 
-- [ ] `GET /games` (only games played by current user)
+- [ ] `GET /games` (only games played by current user) 🛑
 
-- [ ] `GET /questions?tag=javascript&difficulty=hard`
+- [ ] `GET /questions?tag=javascript&difficulty=hard` ❓
 
-- [ ] `GET /questions/:id`
+- [ ] `GET /questions/:id` ❓
 
-- [ ] `GET /questions?id=11&id=23&id=56`
+- [ ] `GET /questions?id=11&id=23&id=56` ❓
 
-- [ ] `POST /questions`
+- [ ] `POST /questions` ❓
 
-- [ ] `DELETE /questions`
+- [ ] `DELETE /questions` ❓
 
 
