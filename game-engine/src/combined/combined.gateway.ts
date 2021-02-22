@@ -15,6 +15,20 @@ export class CombinedGateway extends _baseGateway {
   @Inject() private readonly gameHandler!: GameHandler;
   @Inject() private readonly matchHandler!: MatchHandler;
 
+  // ========== GAME EVENTS START ============
+  @SubscribeMessage('game/join')
+  handleGameJoin() { return }
+
+  @SubscribeMessage('game/select_answer')
+  handleGameAnswer() { return }
+
+  @SubscribeMessage('game/abandon')
+  handleGameAbandon() { return }
+
+  // ========== GAME EVENTS END ============
+
+  // ========== MATCH EVENTS START ============
+
   @SubscribeMessage('match/request')
   handleMessage(
     @MessageBody() data: string,
@@ -29,4 +43,7 @@ export class CombinedGateway extends _baseGateway {
     const player = {} as Player; // TODO
     return this.matchHandler.createMatchRequest(player, matchId);
   }
+
+  // ========== MATCH EVENTS START ============
+
 }

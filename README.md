@@ -62,7 +62,7 @@ Run `npm run build` on the root to recursively build all projects internally
 - `game/abandon`
 
 **updates** (server -> client)
-- `game/init`
+- `game/init` ✅
   - timings
   - player details (you, opponent)
 
@@ -89,6 +89,25 @@ Run `npm run build` on the root to recursively build all projects internally
 
 - `game/error`
   - generic server side errors
+
+#### Payloads
+
+```typescript
+export class GameScoreSheet {
+  questions: ScoreSheetQuestionMap = {
+    '0': {
+      correct: 'a',
+      player1: {score: 10, opt: 'c', tDelta: 1000},
+      player2: {score: 10, opt: 'c', tDelta: 1000}
+    },
+    '1': {
+      correct: 'a',
+      player1: {score: 10, opt: 'c', tDelta: 1000},
+      player2: {score: 10, opt: 'c', tDelta: 1000}
+    }
+  };
+}
+```
 
 1. MatchMaker
 
