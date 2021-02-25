@@ -1,4 +1,6 @@
 import { _baseGameUpdate } from './_base.update';
 
 
-export class GameEndUpdate  extends _baseGameUpdate {}
+export class GameEndUpdate  extends _baseGameUpdate {
+  name = 'game/end'
+}

@@ -15,12 +15,13 @@ class PlayerData {
 
 
 export class GameInitUpdate extends _baseGameUpdate {
+  name = 'game/init'
   timings: Timings
   players: PlayerData
 
 
   constructor(gameId: string, timings: Timings, players: PlayerData) {
-    super('game/init', gameId);
+    super(gameId);
     this.timings = timings;
     this.players = players;
   }
