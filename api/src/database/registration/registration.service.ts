@@ -1,30 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Database } from '../database.provider';
 import { User } from '@codeblitz/data/dist/entities/user.entity';
-import { UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
 import { Lazy } from '../../utils/lazy.decorator';
-import { AuthtokenRepository } from '@codeblitz/data/dist/repositories/authtoken.repository';
+import { RegistrationRepository } from '@codeblitz/data/dist/repositories/registration.repository';
 
 @Injectable()
-export class UsersService {
+export class RegistrationService {
   @Inject() private readonly database!: Database;
 
-  @Lazy<UsersService>(c => c.database.repos)
-  private repo!: UserRepository;
+  @Lazy<RegistrationService>(c => c.database.repos.registration)
+  private repo!: RegistrationRepository;
 
-  @Lazy<UsersService>(c => c.database.repos.auth)
-  private authRepo!: AuthtokenRepository;
-
-  async findByAuthToken(token: string): Promise<User> {
-    return await this.authRepo.validateToken(token)
-  }
-
-  async findById(id: number): Promise<User> {
-    return await this.repo.findById(id);
-  }
-
-  async findAll(): Promise<User[]> {
-    return await this.repo.findAll();
+  async registerEmail(email: string){
+    return await this.repo.register({email})
   }
 
 }

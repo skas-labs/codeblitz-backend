@@ -1,7 +1,7 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiProperty, ApiTags } from '@nestjs/swagger';
 import { IsEmail, IsUUID} from 'class-validator';
-import { PlayersService } from '../database/players/players.service';
+import { RegistrationService } from '../database/registration/registration.service';
 
 class RegisterSendBody {
   @ApiProperty({required: true, example: 'abc@codeblitz.app'})
@@ -25,11 +25,12 @@ class RegistrationCompleteResponse {
 @ApiTags('registration')
 @Controller('register')
 export class RegisterController {
-  @Inject() private readonly players!: PlayersService
+  @Inject() private readonly registration!: RegistrationService
 
   @ApiCreatedResponse({type: RegistrationCompleteResponse})
   @Post('/')
   async register(@Body() register: RegisterSendBody): Promise<RegistrationCompleteResponse> {
+    await this.registration.registerEmail(register);
     return new RegistrationCompleteResponse("Hello")
   }
 }
