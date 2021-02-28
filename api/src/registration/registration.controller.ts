@@ -23,14 +23,14 @@ class RegistrationCompleteResponse {
 
 
 @ApiTags('registration')
-@Controller('register')
-export class RegisterController {
+@Controller('registration')
+export class RegistrationController {
   @Inject() private readonly registration!: RegistrationService
 
   @ApiCreatedResponse({type: RegistrationCompleteResponse})
   @Post('/')
   async register(@Body() register: RegisterSendBody): Promise<RegistrationCompleteResponse> {
-    await this.registration.registerEmail(register);
+    await this.registration.registerEmail(register.email);
     return new RegistrationCompleteResponse("Hello")
   }
 }

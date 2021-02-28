@@ -11,6 +11,7 @@ import { MatchRequestRepository } from './repositories/matchRequest.repository';
 import { AuthtokenRepository } from './repositories/authtoken.repository';
 import { AuthToken } from './entities/authtoken.entity';
 import { RegistrationRepository } from './repositories/registration.repository';
+import { Registration } from './entities/registration.entity';
 
 export const Entities = {
   User,
@@ -54,7 +55,7 @@ export async function connect(name = 'default', force = false): Promise<DataStor
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken ],
+    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken, Registration ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
