@@ -319,3 +319,6 @@ api/types
 data/types
 game-engine/types
 sidekick/types
+
+
+yarn.lock
