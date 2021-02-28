@@ -25,6 +25,7 @@ For Sample Authentication use \`105c840c-f4c8-4c6b-a8f8-f326d4012d63\`
   const document = SwaggerModule.createDocument(app, swaggerOpts);
   SwaggerModule.setup('docs', app, document);
 
+  app.enableCors()
   await app.get(Database).connectDb();
   await app.listen(3131);
 }
