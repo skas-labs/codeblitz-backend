@@ -1,7 +1,8 @@
-import { Body, Controller, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Logger, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiProperty, ApiResponse, ApiResponseProperty, ApiTags } from '@nestjs/swagger';
 import { IsMobilePhone, IsNumberString, IsUUID, Length } from 'class-validator';
 import { v4 as uuid4 } from 'uuid';
+import { UsersService } from '../../database/users/users.service';
 
 class OtpSendBody {
   @ApiProperty({required: true, example: '+918800233266'})
@@ -47,6 +48,9 @@ class OtpVerifyResponse {
 @Controller('otp')
 export class OtpController {
 
+  @Inject() private readonly users!: UsersService;
+
+
   @ApiCreatedResponse({type: OtpSendResponse})
   @Post('/')
   async requestOtp(@Body() reqOtp: OtpSendBody): Promise<OtpSendResponse> {
@@ -60,10 +64,11 @@ export class OtpController {
   @ApiResponse({type: OtpVerifyResponse})
   @Post('/verify')
   async verifyOtp(@Body() otpVerify: OtpVerifyBody): Promise<OtpVerifyResponse> {
-    Logger.debug(JSON.stringify(otpVerify), 'OTP_VERIFY')
+    Logger.debug(JSON.stringify(otpVerify), 'OTP_VERIFY');
+    const [ user, isNewUser ] = await this.users.findOrCreate(otpVerify.phno);
     return new OtpVerifyResponse(
       uuid4().toString(),
-      true
+      isNewUser
     );
   }
 }
