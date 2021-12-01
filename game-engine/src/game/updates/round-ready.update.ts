@@ -1,5 +1,6 @@
 import { _baseGameUpdate } from './_base.update';
 import { Max, Min } from 'class-validator';
+import { GameSession } from '@codeblitz/data/dist/entities/gamesession.entity';
 
 
 export class RoundReadyUpdate  extends _baseGameUpdate {
@@ -9,8 +10,8 @@ export class RoundReadyUpdate  extends _baseGameUpdate {
   roundId: number
 
 
-  constructor(gameId: string, name: string, roundId: number) {
-    super(gameId);
+  constructor(game: GameSession, name: string, roundId: number) {
+    super(game);
     this.name = name;
     this.roundId = roundId;
   }

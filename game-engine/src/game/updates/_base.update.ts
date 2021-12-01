@@ -1,12 +1,12 @@
-import { IsUUID } from 'class-validator';
+import { GameSession } from '@codeblitz/data/dist/entities/gamesession.entity';
 
 export abstract class _baseGameUpdate {
   abstract name: string;
 
-  @IsUUID()
-  gameId!: string;
+  game!: GameSession;
 
-  constructor(gameId: string) {
-    this.gameId = gameId;
+
+  constructor(game: GameSession) {
+    this.game = game;
   }
 }

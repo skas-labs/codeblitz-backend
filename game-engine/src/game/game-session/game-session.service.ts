@@ -1,35 +1,47 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GameSession, GameUpdates } from './game-session.entity';
 import { Player } from '@codeblitz/data/dist/entities/player.entity';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DatabaseService } from 'src/database/database.service';
+import { GameState } from '@codeblitz/data/dist/entities/gamesession.entity';
+import { _baseGameUpdate as GameUpdate } from '../updates/_base.update';
+import { GameRepository } from '@codeblitz/data/dist/repositories/game.repository';
+import { GameInitUpdate, PlayerData } from '../updates/game-init.update';
+import { Timings } from '../entities/game-score-sheet.entity';
+
+class InvalidGameError extends Error {
+  name = 'ERR_GAME_INVALID';
+}
 
 @Injectable()
 export class GameSessionService {
   @Inject() private readonly database!: DatabaseService;
 
-  private games: Map<string, GameSession> = new Map<string, GameSession>();
+  get gameRepo(): GameRepository {
+    return this.database.games;
+  }
 
-  async joinGame(player: Player, gameId: string): Promise<Observable<GameUpdates>> {
+  private games = new Map<string, BehaviorSubject<GameUpdate>>();
 
-    // TODO: check if gameID is valid
-    // TODO: check if this player can join this game
-
-    let gameSession: GameSession;
-    if (this.games.has(gameId)) {
-      gameSession = this.games.get(gameId)!;
-    } else {
-      const questions = await this.database.questions.findAll({
-        take: 10
-      });
-
-      gameSession = new GameSession(gameId, questions);
-      this.games.set(gameId, gameSession);
+  async joinGame(player: Player, gameId: string): Promise<Observable<GameUpdate>> {
+    let gameUpdate = this.games.get(gameId);
+    let game = gameUpdate?.value.game
+    if (!gameUpdate?.value.game) {
+      game = await this.gameRepo.findGameById(gameId);
+      gameUpdate = new BehaviorSubject<GameUpdate>(
+        new GameInitUpdate(game, new Timings(), new PlayerData(
+          game.player1!, game.player2!
+        ))
+      );
+      this.games.set(gameId, gameUpdate)
     }
 
-    gameSession.joinGame(player);
+    if (!((player.id == game?.player1?.id) || (player.id == game?.player2?.id))) {
+      throw new InvalidGameError(`Player ${ player.id } not allowed in game ${ gameId }`);
+    } else {
+      this.gameRepo.updateGameState(game, GameState.WAITING_PLAYERS);
+    }
 
-    return gameSession.gameUpdates.asObservable();
+    return game!;
 
   }
 
@@ -38,15 +50,15 @@ export class GameSessionService {
     // TODO: check if this player can start this game
 
     const gameSession = this.games.get(gameId);
-    gameSession!.start();
+    // gameSession!.start();
 
   }
 
   selectAnswer(player: Player, gameId: string, questionId: number, answerId: number) {
     // TODO: check if gameID is valid
     // TODO: check if this player can start this game
-
-    const gameSession = this.games.get(gameId);
-    gameSession!.playerAnswerQuestion(player, questionId, answerId);
+    //
+    // const gameSession = this.games.get(gameId);
+    // gameSession!.playerAnswerQuestion(player, questionId, answerId);
   }
 }

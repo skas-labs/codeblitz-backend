@@ -1,9 +1,13 @@
 import { IsIn, IsNumber } from 'class-validator';
 
-export interface Timings {
+export class Timings {
   start: Date
   end: Date
 
+  constructor() {
+    this.start = new Date(Date.now());
+    this.end = new Date(Date.now() + 10 * 30 * 1000) // 10 ques * 30 seconds
+  }
 }
 
 type QuestionId = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'

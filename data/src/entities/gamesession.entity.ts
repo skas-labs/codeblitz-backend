@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Player } from './player.entity';
 
-enum GameState {
+export enum GameState {
   CREATED,
   WAITING_PLAYERS,
   STARTED,

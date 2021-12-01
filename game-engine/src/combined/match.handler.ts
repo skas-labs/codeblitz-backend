@@ -10,6 +10,7 @@ export class MatchHandler {
   @Inject() private readonly matchMaker!: MatchMakerService;
 
 
+  // on match/request
   createMatchRequest(player: Player, matchReqId: string): Observable<WsResponse<QueuedGamePlayer>> {
     const newMatchRequest = this.matchMaker.queuePlayer(player);
     return newMatchRequest.pipe(map(queuePlayer => ({event: 'match/status', data: queuePlayer})));

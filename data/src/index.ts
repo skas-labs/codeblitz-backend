@@ -10,6 +10,8 @@ import { MatchRequest } from './entities/match.entity';
 import { MatchRequestRepository } from './repositories/matchRequest.repository';
 import { AuthtokenRepository } from './repositories/authtoken.repository';
 import { AuthToken } from './entities/authtoken.entity';
+import { GameRepository } from './repositories/game.repository';
+import { GameSession } from './entities/gamesession.entity';
 
 export const Entities = {
   User,
@@ -38,6 +40,7 @@ export class Repositories {
   get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
   get matchRequest(): MatchRequestRepository { return this.connection.getCustomRepository(MatchRequestRepository); }
   get auth(): AuthtokenRepository { return this.connection.getCustomRepository(AuthtokenRepository); }
+  get games(): GameRepository { return this.connection.getCustomRepository(GameRepository); }
 
   static getInstance(name: string): Repositories {
     return new Repositories(name)
@@ -52,7 +55,7 @@ export async function connect(name = 'default', force = false): Promise<DataStor
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken ],
+    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken, GameSession ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,

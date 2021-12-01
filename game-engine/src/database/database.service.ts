@@ -3,6 +3,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { Database } from "./database.provider";
 import { UserRepository } from '@codeblitz/data/dist/repositories/user.repository';
 import { AuthtokenRepository } from '@codeblitz/data/dist/repositories/authtoken.repository';
+import { GameRepository } from '@codeblitz/data/dist/repositories/game.repository';
 
 @Injectable()
 export class DatabaseService {
@@ -16,5 +17,9 @@ export class DatabaseService {
   }
   get authTokens(): AuthtokenRepository {
     return this.database.repos.auth
+  }
+
+  get games(): GameRepository {
+    return this.database.repos.games;
   }
 }
