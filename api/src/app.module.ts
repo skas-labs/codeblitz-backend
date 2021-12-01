@@ -8,6 +8,7 @@ import { DatabaseModule } from './database/database.module';
 import { RouterModule } from 'nest-router';
 import { appRouter } from './app.router';
 import { AuthModule } from './auth/auth.module';
+import { RegistrationModule } from './registration/registration.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
     // RouterModule.forRoutes(appRouter),
     // apis
     PlayersModule, GameModule, QuestionsModule,
+    RegistrationModule,
     //auth
     AuthModule,
     // database
