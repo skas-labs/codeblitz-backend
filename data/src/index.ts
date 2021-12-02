@@ -42,11 +42,8 @@ export class Repositories {
   get player(): PlayerRepository { return this.connection.getCustomRepository(PlayerRepository); }
   get matchRequest(): MatchRequestRepository { return this.connection.getCustomRepository(MatchRequestRepository); }
   get auth(): AuthtokenRepository { return this.connection.getCustomRepository(AuthtokenRepository); }
-<<<<<<< HEAD
   get games(): GameRepository { return this.connection.getCustomRepository(GameRepository); }
-=======
   get registration(): RegistrationRepository { return this.connection.getCustomRepository(RegistrationRepository); }
->>>>>>> e0b2bd701edbfdaea5e5fe24415d2ac394ed664b
 
   static getInstance(name: string): Repositories {
     return new Repositories(name)
@@ -61,11 +58,7 @@ export async function connect(name = 'default', force = false): Promise<DataStor
     username: 'codeblitz',
     database: 'codeblitz',
     password: 'codeblitz',
-<<<<<<< HEAD
-    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken, GameSession ],
-=======
-    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken, Registration ],
->>>>>>> e0b2bd701edbfdaea5e5fe24415d2ac394ed664b
+    entities: [ User, Player, Follow, Question, MatchRequest, AuthToken, GameSession, Registration ],
     logger: 'advanced-console',
     logging: 'all',
     synchronize: true,
