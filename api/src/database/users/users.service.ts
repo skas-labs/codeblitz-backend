@@ -16,7 +16,7 @@ export class UsersService {
   private authRepo!: AuthtokenRepository;
 
   async findByAuthToken(token: string): Promise<User> {
-    return await this.authRepo.validateToken(token)
+    return await this.authRepo.validateToken(token);
   }
 
   async findById(id: number): Promise<User> {
@@ -25,6 +25,16 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     return await this.repo.findAll();
+  }
+
+  async findOrCreate(number: string): Promise<[ User, boolean ]> {
+    const user = await this.repo.findByPhNo(number);
+    if (user != null)
+      if (user.email == null || user.player == null)
+        return [ user, true ];
+      else
+        return [ user, false ];
+    else return [ await this.repo.createUser({emailid: '', phno: number}), true ];
   }
 
 }
